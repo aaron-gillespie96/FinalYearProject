@@ -1,0 +1,159 @@
+<html lang="en">
+  
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	 <meta name="viewport" content="initial-scale=1">
+
+      <link rel="stylesheet" href="css/index.css">
+	   <link rel="stylesheet" href="css/login.css">
+	   <link rel="stylesheet" href="css/register.css">
+	   <link rel="stylesheet" href="css/password.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+	
+	<!--Redirects user to mobile version, if the screen with is equal or less than 699
+		<script type="text/javascript">
+		if (screen.width <= 699) {
+		document.location = "mobile.html";
+		}
+		</script>
+		-->
+	
+  </head>
+  
+  <body>
+    <nav class="navbar navbar-inverse">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="#"><img src="">ICOHub</a>
+			</div>
+			<div class="collapse navbar-collapse" id="myNavbar">
+				<ul class="nav navbar-nav navbar-right">
+					<li class=""><a href="http://student.computing.dcu.ie/~dohere38/finalYearWebsite/index.html">Home</a></li>
+					<li><a href="#">Marketplace</a></li>
+					<li><a href="http://student.computing.dcu.ie/~dohere38/finalYearWebsite/TokenCreator.html">Token Creator</a></li>
+					<li><a href="#" data-toggle="modal" data-target="#login-modal">Login</a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+	
+
+		<!--Login form -->
+		<div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+    	  <div class="modal-dialog">
+				<div class="loginmodal-container">
+					<h1>Login to Your Account</h1><br>
+				  <form>
+					<input type="text" name="user" placeholder="Username">
+					<input type="password" name="pass" placeholder="Password">
+					<input type="submit" name="login" class="login loginmodal-submit" value="Login">
+				  </form>
+					
+				  <div class="login-help">
+					<a href="#"data-toggle="modal" data-target="#registration-modal" data-dismiss="modal">Register</a> - <a href="#"data-toggle="modal" data-target="#password-modal" data-dismiss="modal">Forgot Password</a>
+				  </div>
+				</div>
+			</div>
+		 </div>
+		 <!--End Of Login form-->
+		 
+		 
+		 <!--Registration form-->
+		 <div class="modal fade" id="registration-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+    	  <div class="modal-dialog">
+				<div class="registrationmodal-container">
+					<h1>Registration form</h1><br>
+				  <form>
+				<input type="text" name="fullname" placeholder="Full Name">
+				<input type="text" name="email" placeholder="Email Address">
+				<input type="text" name="user" placeholder="Username">
+				<input type="password" name="pass" placeholder="Password">
+				<input type="submit" name="registration" class="registration registrationmodal-submit" value="Submit">
+				  </form>
+					
+				</div>
+			</div>
+		 </div>
+		 <!-- End of registrtation form-->
+		 
+		 <!--forgotten password modal-->
+		 <div class="modal fade" id="password-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+    	  <div class="modal-dialog">
+				<div class="passwordmodal-container">
+				<h1>Recover password</h1><br>
+				  <form>
+				<input type="text" name="user" placeholder="Username">
+				<input type="text" name="email" placeholder="Email Address">
+				<input type="submit"  name="answer" class="password passwordmodal-submit" value="Retrieve" onclick="showDiv('toggle')">
+			<div id="toggle" style="display:none"><b>Check your email</b></br> We've sent an email to reset your password</div>
+				  </form>
+				</div>
+			</div>
+		 </div>
+				 <script>
+				 function showDiv(toggle){
+document.getElementById(toggle).style.display = 'block';
+}
+				 </script>
+		 <!-- End of Forgotten Password modal-->
+
+		 
+	<div class="container h-100 d-flex justify-content-center">
+		<div class="jumbotron my-auto">
+			<div class="container">
+				<div class="row">
+					
+						
+							<form action="" method="">
+								<div class="form-group">
+									 <label for="tokenName">Token Name:</label>
+										<input type="text" id="tokenName" />
+										<br>
+			
+											 <label for="tokenName">Total tokens available:</label>
+										<input type="text" style="width: 112px" id="tokenName" />
+										<br>
+											 <label for="tokenName">Price per token:</label>
+										<input type="text" id="tokenName" />
+										<br>
+											 <label for="tokenName">Token launch date:</label>
+										<input type="text" id="date" />
+										<br>
+											 <label for="tokenName">Product Category:</label>
+										<input type="text" id="tokenName" />
+										<br>
+								</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+	<script src="js/jquery-3.2.1.min.js"</script>
+	<script src="js/bootstrap.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+	<script src="js/ui.js"></script>
+  </body>
+  
+  
+  
+  
+  <footer>
+  
+  
+  
+  
+  
+  
+  </footer>
+  
+</html>
