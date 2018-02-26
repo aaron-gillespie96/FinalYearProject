@@ -3,20 +3,93 @@ html {
     height: 100%;
 }
 body {
-  background-color:#808080 !important;
+  background-color: #383838 !important;
 }
+
+
+.parallax1, .parallax2, .parallax3 {
+  position: relative;
+  opacity: 0.65;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+}
+.parallax1 {
+  background-image: url("../images/download.jpg");
+  min-height: 30%;
+}
+
+.parallax2 {
+  background-image: url("../images/download.jpg");
+  min-height: 30%;
+}
+
+.parallax3{
+  background-image: url("img_parallax3.jpg");
+  min-height: 400px;
+}
+
+
+
+/*-----------------------------------*/
+/* The different sections CSS */
+/*-----------------------------------*/
+
+
+
+#section1 {
+	margin-top: 60px;
+	margin-bottom: 10px;
+}
+
+#info1{
+
+	color: white;
+	
+height: 400px;
+	
+}
+#info3{
+
+	
+	max-height: 610px;
+}
+	
+#section3{
+	margin:16;
+	color: #ffffff;
+	
+}
+
+
+/*-----------------------------------*/
+/* end of the sections CSS */
+/*-----------------------------------*/
+
 
 /*-----------------------------------*/
 /* Navigation bar  CSS */
 /*-----------------------------------*/
 .navbar{
-	background-color: #132639 !important;
+	background-color: black!important;
 }
 .navbar .navbar-brand {
   padding-top: 0px;
 }
 .navbar .navbar-brand img {
   height: 50px;
+}
+
+
+.navbar-toggle:before {
+    content:"Menu";
+    left:-50px;
+    top:4px;
+    position:absolute;
+    width:50px;
+	color: white;
 }
 /*-----------------------------------*/
 /* End of Navigation CSS */
@@ -30,6 +103,10 @@ body {
 	margin-bottom: 60px;
 }
 
+#carousel-section {
+	margin-top: 5px;
+	margin-bottom: 10px;
+}
 
 .carousel-caption h4 {
 	font-size: 32px;
@@ -67,7 +144,7 @@ body {
 /* For Landscape Phpnes to potrait tablets */
 @media (max-width768px) {
 	
-	#icohubCarousel .item { height: 310px; }
+	#icohubCarousel .item { height: 210px; }
 	
 	#slide1 {
 		background: url("../images/carousel_small_01.jpg") top center no-repeat;
@@ -94,7 +171,7 @@ body {
 /* For Larger Desktop Screens */
 @media (min-width: 1200px) {
 	
-	#icohubCarousel .item { height: 500px; }
+	#icohubCarousel .item { height: 300px; }
 	
 	#slide1 {
 		background: url("../images/carousel_large_01.jpg") top center no-repeat;
@@ -429,7 +506,7 @@ body {
 /*-----------------------------------*/
 
 footer {
-	background:  #132639;
+	background:  black;
 	color: #eee;
 	font-size: 11px;
 	padding: 20px;
