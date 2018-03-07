@@ -3,13 +3,12 @@ html {
     height: 100%;
 }
 body {
-  background-color: #383838 !important;
+  background-color: #ffffff !important;
 }
 
 
 .parallax1, .parallax2, .parallax3 {
   position: relative;
-  opacity: 0.65;
   background-attachment: fixed;
   background-position: center;
   background-repeat: no-repeat;
@@ -17,7 +16,7 @@ body {
 
 }
 .parallax1 {
-  background-image: url("../images/download.jpg");
+  background-image: url("../images/maxresdefault.jpg");
   min-height: 30%;
 }
 
@@ -31,37 +30,133 @@ body {
   min-height: 400px;
 }
 
-
+/*.navbar-fixed-top.scrolled {
+  background-color: #000000 !important;
+  transition: background-color 200ms linear;
+}
+*/
 
 /*-----------------------------------*/
 /* The different sections CSS */
 /*-----------------------------------*/
 
 
+.profile-card {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    max-width: 300px;
+    margin: auto;
+    text-align: center;
+	border: 1px solid white;
+}
 
+.profiletitle {
+    color: grey;
+    font-size: 18px;
+}
+
+.profilebutton {
+    border: none;
+    outline: 0;
+    display: inline-block;
+    padding: 8px;
+    color: white;
+    background-color: #000;
+    text-align: center;
+    cursor: pointer;
+    width: 100%;
+    font-size: 18px;
+}
+
+.profilea {
+    text-decoration: none;
+    font-size: 22px;
+    color: black;
+}
+
+button:hover, a:hover {
+    opacity: 0.7;
+}
+#video{
+		background-color: #98b4e2;
+}
 #section1 {
 	margin-top: 60px;
 	margin-bottom: 10px;
-}
-
-#info1{
-
-	color: white;
-	
-height: 400px;
-	
-}
-#info3{
-
-	
 	max-height: 610px;
 }
-	
-#section3{
-	margin:16;
-	color: #ffffff;
-	
+
+#section2{
+	color: black;
+	margin-top: 60px;
+	margin-bottom: 60px;
 }
+
+#section3{
+	color: black;
+	margin-top: 60px;
+	margin-bottom: 60px;
+}
+
+#section4{
+	color: black;
+	margin-top: 60px;
+	margin-bottom: 200px;
+}
+
+
+
+
+#aboutUs {
+	margin-top: 60px;
+}
+
+#invOpt{
+	margin-top: 60px;
+	border: 1px  solid black;
+}
+
+
+@media (max-width: 768px) {
+  #watchlistBtn {
+    font-size:11px;
+    padding:4px 6px;
+	width: 200px;
+  }
+}
+
+@media (min-width: 768px) {
+  #watchlistBtn {
+    font-size:12px;
+    padding:6px 12px;
+	width:250px;
+  }
+}
+
+@media (min-width: 992px) {
+  #watchlistBtn {
+    font-size:14px;
+    padding:8px 12px;
+	width: 350px;
+  }
+}
+
+@media (min-width: 1200px) {
+  #watchlistBtn  {
+    padding:10px 16px;
+    font-size:18px;
+	width: 400px;
+  }
+}
+
+#investorProfile{
+	margin-top: 60px;
+}
+
+
+
+
+
+	
 
 
 /*-----------------------------------*/
@@ -99,7 +194,7 @@ height: 400px;
 /*Start of the Carousel CSS */
 /*-----------------------------------*/
 #icohubCarousel {
-	margin-top: 60px;
+	margin-top: px;
 	margin-bottom: 60px;
 }
 
@@ -216,6 +311,12 @@ height: 400px;
 
 .card:last child: {
 	margin-right:0.75rem;
+}
+
+#chartdiv {
+	width		: 100%;
+	height		: 500px;
+	font-size	: 11px;
 }
 /*-----------------------------------*/
 /*End of Startup cards CSS*/
@@ -505,6 +606,73 @@ height: 400px;
 /*End of Register User modal CSS*/
 /*-----------------------------------*/
 
+/*-----------------------------------*/
+/*Start of Marketplace CSS*/
+/*-----------------------------------*/
+.card{
+	border: 1px solid black;
+	background-color: white;
+	
+}
+
+#card-image{
+	margin: 0 auto;
+}
+
+.mainTitle{
+	font-size:36px;
+text-align: center;
+}
+
+.aboutIcohub{
+	font-size: 24px;
+	text-align: center;
+}
+
+.gallery-title
+{
+    font-size: 36px;
+    color: #000000;
+    text-align: center;
+    font-weight: 500;
+    margin-bottom: 20px;
+}
+.gallery-title:after {
+    content: "";
+    position: absolute;
+    width: 7.5%;
+    left: 46.5%;
+    height: 45px;
+    border-bottom: 1px solid #5e5e5e;
+}
+.filter-button
+{
+    font-size: 18px;
+    border: 1px solid #42B32F;
+    border-radius: 5px;
+    text-align: center;
+    color: #42B32F;
+    margin-bottom: 30px;
+
+}
+
+.port-image
+{
+    width: 100%;
+}
+
+.gallery_product
+{
+    margin-bottom: 30px;
+}
+
+#marketplace{
+	margin-top: 60px;
+}
+
+/*-----------------------------------*/
+/*End of Marketplace CSS*/
+/*-----------------------------------*/
 footer {
 	background:  black;
 	color: #eee;
