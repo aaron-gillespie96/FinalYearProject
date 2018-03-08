@@ -7,16 +7,46 @@ body {
 }
 
 
+/*-----------------------------------*/
+/* The parallax CSS */
+/*-----------------------------------*/
+#hello{
+	background-color: #98b4e2;
+	height: 700px;
+}
+
+#hello2{
+	 background-image: url("../images/white.png");
+	 height: 700px;
+}
+
+#hello3{
+	background-color: #baf2e9;
+	 height: 700px;
+}
+
+#hello4{
+	 background-image: url("../images/white3.png");
+	 height: 700px;
+}
+
+
+
+
+.getStarted{
+	width: 150px;
+	height: 50px;
+	margin-left:35%;
+}
 .parallax1, .parallax2, .parallax3 {
   position: relative;
   background-attachment: fixed;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-
 }
 .parallax1 {
-  background-image: url("../images/maxresdefault.jpg");
+  background-image: url("../images/pattern1.jpg");
   min-height: 30%;
 }
 
@@ -30,6 +60,12 @@ body {
   min-height: 400px;
 }
 
+
+/*-----------------------------------*/
+/* End of the Parralax CSS*/
+/*-----------------------------------*/
+
+
 /*.navbar-fixed-top.scrolled {
   background-color: #000000 !important;
   transition: background-color 200ms linear;
@@ -37,24 +73,93 @@ body {
 */
 
 /*-----------------------------------*/
-/* The different sections CSS */
+/* Contact Form CSS (Homepage)*/
 /*-----------------------------------*/
 
+.contact-form textarea.form-control {
+    height: 140px;
+    resize: inherit;
+    border-radius: 0px;
+}
+.contact-box {
+    color: #fff;
+    font-size: 16px;
+    line-height: 1.5em;
+    font-weight: 500;
+    text-transform: capitalize;
+}
+.contactForm-btn {
+    border: 2px solid transparent;
+    background-color: #1c82ce;
+    color: #fff;
+    margin-top: 10px;
+    padding: 10px 20px 10px 20px;
+    font-size: 20px;
+    outline: none;
+}
+.contactForm-btn:hover {
+    border: 2px solid #242424;
+    background:#22699e;
+}
+
+.addressDetails {margin-bottom:45px; margin-top:45px}
+.contact-add-box ul {
+    list-style:none;
+    font-size:15px;
+    font-weight:500;
+    line-height:25px;
+}
+.contact-add-box i { 
+    color: #1c82ce;
+    padding-right:10px;
+}
+
+/*-----------------------------------*/
+/* End of Contact Form CSS (Homepage)*/
+/*-----------------------------------*/
+
+#university
+{
+	font-size: 20px;
+}
+
+#our-team{
+	margin-top: 60px;
+	margin-bottom: 20px;
+}
+
+#contact-us{
+	margin-top: 80px;
+	margin-bottom: 20px;
+}
+.btn-linkedin {
+	  background: #0E76A8;
+	  border-radius: 0;
+	  color: #fff;
+	  border-width: 1px;
+	  border-style: solid;
+	  border-color: #084461;
+	}
+	.btn-linkedin:link, .btn-linkedin:visited {
+	  color: #fff;
+	}
+	.btn-linkedin:active, .btn-linkedin:hover {
+	  background: #084461;
+	  color: #fff;
+	}
 
 .profile-card {
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     max-width: 300px;
     margin: auto;
     text-align: center;
-	border: 1px solid white;
 }
 
-.profiletitle {
+.profile-title {
     color: grey;
     font-size: 18px;
 }
 
-.profilebutton {
+.profile-button {
     border: none;
     outline: 0;
     display: inline-block;
@@ -67,7 +172,7 @@ body {
     font-size: 18px;
 }
 
-.profilea {
+.profile-paragraph {
     text-decoration: none;
     font-size: 22px;
     color: black;
@@ -76,9 +181,7 @@ body {
 button:hover, a:hover {
     opacity: 0.7;
 }
-#video{
-		background-color: #98b4e2;
-}
+
 #section1 {
 	margin-top: 60px;
 	margin-bottom: 10px;
@@ -622,6 +725,9 @@ button:hover, a:hover {
 .mainTitle{
 	font-size:36px;
 text-align: center;
+}
+.mainTitles{
+	font-size:36px;
 }
 
 .aboutIcohub{
