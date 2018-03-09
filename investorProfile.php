@@ -17,7 +17,8 @@
 			
 	  </head>
  
-  
+ 
+
 
 	  <body>
 		<!--Start of the navbar -->
@@ -89,21 +90,25 @@
 				<h4>Details:<br>
 				
 				<?php
-			$link = mysql_connect('localhost', 'root', 'hhCEiY41iknJ'); 
+
+$link = mysql_connect('localhost', 'root', 'hhCEiY41iknJ'); 
 mysql_select_db('icohub', $link);
-   
-
-
-$sql    = 'SELECT Name FROM investors';
+$sql    = 'SELECT * FROM investors';
 $result = mysql_query($sql, $link);
+?>
+
+<?php 
+ $row = mysql_fetch_assoc($result); ?>
+ 
+      Name: <h1><?php echo $row['Name']; ?>< <br> 
+      ID: <?php echo $row['Investor_id']; ?>
+    
+	
+
+	
 
 
-while ($row = mysql_fetch_assoc($result)) {
-    echo $row['Name'];
-}
 
-
-                 ?>
 				
 				</div>
 				
