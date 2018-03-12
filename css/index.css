@@ -3,31 +3,48 @@ html {
     height: 100%;
 }
 body {
-  background-color: #ffffff !important;
+  background-color: #9bbcf2 !important;
 }
 
 
 /*-----------------------------------*/
 /* The parallax CSS */
 /*-----------------------------------*/
-#hello{
+#whatis{
 	background-color: #98b4e2;
-	height: 700px;
+
+	
 }
 
-#hello2{
+#investorinfo{
 	 background-image: url("../images/white.png");
-	 height: 700px;
+	 
 }
 
 #hello3{
 	background-color: #baf2e9;
-	 height: 700px;
+	
 }
 
-#hello4{
+#startupinfo{
 	 background-image: url("../images/white3.png");
-	 height: 700px;
+	 
+}
+
+#updateStartup{
+	margin-top:60px;
+}
+
+#evans-card{
+	margin-bottom: 90px;
+}
+
+#map {
+	margin-bottom: 60px;
+}
+#contact-us{
+	margin-top:60px;
+	margin-bottom: 60px
 }
 
 

@@ -8,12 +8,7 @@
 		<meta name="viewport" content="initial-scale=1">
 		<link rel="stylesheet" href="css/index.css">
 		<link rel="stylesheet" href="css/bootstrap.min.css">
-		<link href="js/canvasjs.min.js">
-			<script src="https://www.amcharts.com/lib/3/amcharts.js"></script>
-<script src="https://www.amcharts.com/lib/3/pie.js"></script>
-<script src="https://www.amcharts.com/lib/3/themes/light.js"></script>
-<script src="https://www.amcharts.com/lib/3/plugins/export/export.min.js"></script>
-<link rel="stylesheet" href="https://www.amcharts.com/lib/3/plugins/export/export.css" type="text/css" media="all" />
+		
 		
 		<!-- Global site tag (gtag.js) - Google Analytics -->
 		<script async src="https://www.googletagmanager.com/gtag/js?id=UA-115336551-1"></script>
@@ -27,9 +22,6 @@ input.setCustomValidity('');
 }
 }
 </script>
-
-
-		
 		
 	  </head>
   
@@ -101,7 +93,7 @@ input.setCustomValidity('');
 							
 							<ul class="dropdown-menu">
 								<li>
-									<a href="companyName.php"><span class="glyphicon glyphicon-wrench"></span>View Profile</a>
+									<a href="companyName.php"><span class="glyphicon glyphicon-wrench"></span> Settings</a>
 								</li>
 								
 								<li>
@@ -129,6 +121,8 @@ input.setCustomValidity('');
 			</div><!-- end container -->
 		</div><!-- end navbar -->
 		
+		
+		  
 			<div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
 			  <div class="modal-dialog">
 					<div class="loginmodal-container">
@@ -161,179 +155,74 @@ input.setCustomValidity('');
 				</div>
 			</div>
 
+			
+
+
 		
 		<div class="container">
-			<div class="row" id="investorProfile">
-				<div class="col-sm-6">
-				<h3><u>My Account</u></h3>
+			<div class="row">
+			<div class="col-sm-6" id="first">
+			<h2>Add contact details</h2>
+				<form role="form" id="contactForm" action="updateStartup.php" method="post">
+					<div class="form-group">
+						<label for="companyName">Company Name:</label>
+						<input type="text" class="form-control" id="companyName"name="companyname"required>
+					</div>
+					<div class="form-group">
+						<label for="companyDesc">Company Description:</label>
+						<input type="text" class="form-control" id="companydesc"name="companydesc" required>
+					</div>
+					<div class="form-group">
+						<label for="companyVideo">Enter Company Video Url:</label>
+						<input type="text" class="form-control" id="companyvid"name="companyvid" required>
+					</div>
+					
+					<div class="form-group">
+						<label for="companyVideo">Token Name: </label>
+						<input type="text" class="form-control" id="companytok"name="tokenname" required>
+					</div>
+					
+					<div class="form-group">
+						<label for="companyVideo">Total Tokens: </label>
+						<input type="text" class="form-control" id="conpanyName"name="totaltokens" required>
+					</div>
+					
+					<div class="form-group">
+						<label for="companyVideo">Price per token:</label>
+						<input type="text" class="form-control" id="conpanyName"name="totalprice" required>
+					</div>
+					
+					<div class="form-group">
+						<label for="companyVideo">Launch Date:</label>
+						<input required type="date" data-date-format="DD MMMM YYYY" name="shootdate" id="shootdate" title="Choose your desired date" min="<?php echo date('Y-m-d'); ?>">
+					</div>
 				
-				<h4>Details:<br>
+					<div class="form-group">
+						<label for="category">What Category best suits your business</label>
+									<select name="category" required>
+									<option value="">Select an option</option>
+										<option value="software">Software</option>
+										<option value="e-commerce">E-commerce</option>
+										<option value="fashion">Fashion</option>
+										<option value="gaming">Gaming</option>
+										<option value="health">Health</option>
+										<option value="engineering">Engineering</option>
+										<option value="fintech-finance">Fintech-finance</option>
+										<option value="other">other</option>
+									</select>
+					</div>
+					<input class="submit" type="submit" value="Send">
+				</form>
+		
 				
-				<?php
-
-$link = mysql_connect('localhost', 'root', 'hhCEiY41iknJ'); 
-mysql_select_db('icohub', $link);
-$sql    = 'SELECT Fname, Address FROM investors';
-$result = mysql_query($sql, $link);
-?>
-
-<?php 
- $row = mysql_fetch_assoc($result); ?>
- 
-      Name: <?php echo $row['Fname']; ?><br> 
-      Address: <?php echo $row['Address']; ?>
-    
-	
-
-	
-
-
-
-				
-				</div>
-				
-				<div class="col-sm-6">
-					<div id="chartdiv"></div>
-				</div>
 				
 			</div>
+			</div>
 		</div>
-		
-		<div class="container">
-	<div class="row">
-	<div class="col-sm-12">
-	 <div id="accordion" role="tablist" aria-multiselectable="true">
-  
-  <div class="card">
-    <div class="card-header" role="tab" id="headingTwo">
-      <h5 class="mb-0">
-        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-         Inventments
-        </a>
-      </h5>
-    </div>
-    <div id="collapseTwo" class="collapse" role="tabpanel" aria-labelledby="headingTwo">
-      <div class="card-block">
-        <table class="table">
-  <thead>
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col"><u>Name</u></th>
-      <th scope="col"><u>Price</u></th>
-      <th scope="col"><u>Balance</u></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <td>Startup1</td>
-      <td>1.50</td>
-      <td>1728</td>
-    </tr>
-    <tr>
-      <th scope="row">2</th>
-      <td>Startup2</td>
-      <td>6.4</td>
-      <td>1022</td>
-    </tr>
-    <tr>
-      <th scope="row">3</th>
-      <td>Startup3</td>
-      <td>0.68</td>
-      <td>100</td>
-    </tr>
-  </tbody>
-</table>
-	 </div>
-    </div>
-  </div>
-  <div class="card">
-    <div class="card-header" role="tab" id="headingThree">
-      <h5 class="mb-0">
-        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-         Watchlist
-        </a>
-      </h5>
-    </div>
-    <div id="collapseThree" class="collapse" role="tabpanel" aria-labelledby="headingThree">
-      <div class="card-block">
-  	       <table class="table">
-  <thead>
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col"><u>Name</u></th>
-      <th scope="col"><u>Price</u></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <td>Startup1</td>
-      <td>1.50</td>
-    </tr>
-    <tr>
-      <th scope="row">2</th>
-      <td>Startup2</td>
-      <td>6.4</td>
-    </tr>
-    <tr>
-      <th scope="row">3</th>
-      <td>Startup3</td>
-      <td>0.68</td>
-    </tr>
-  </tbody>
-</table>
-	 </div>
-    </div>
-  </div>
-   <div class="card">
-    <div class="card-header" role="tab" id="headingFour">
-      <h5 class="mb-0">
-        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-         Recent Activity
-        </a>
-      </h5>
-    </div>
-    <div id="collapseFour" class="collapse" role="tabpanel" aria-labelledby="headingFour">
-      <div class="card-block">
-  	       <table class="table">
-  <thead>
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col"><u>Name</u></th>
-      <th scope="col"><u>Price</u></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <td>Startup1</td>
-      <td>1.50</td>
-    </tr>
-    <tr>
-      <th scope="row">2</th>
-      <td>Startup2</td>
-      <td>6.4</td>
-    </tr>
-    <tr>
-      <th scope="row">3</th>
-      <td>Startup3</td>
-      <td>0.68</td>
-    </tr>
-  </tbody>
-</table>
-	 </div>
-    </div>
-  </div>
-</div>
-	</div>
-	</div>
-</div>
-		
+				
+</body>
 
-	  </body>
-  
-  <footer>
+   <footer>
 	<div class="container">
 		<div class="row">
 			<div class="col-sm-2">
@@ -357,7 +246,7 @@ $result = mysql_query($sql, $link);
 				<div class="col-sm-3">
 				<h6>Follow Us</h6>
 				<ul class="unstyled">
-					<li><a href="https://twitter.com/ICOHubInvest">Twitter</a></li>
+					<li><img src="images/twitter2.png"class="img-responsive"><a href="https://twitter.com/ICOHubInvest">Twitter</a></li>
 					<li><a href="https://www.facebook.com/ICOHub-2214663765433262/">Facebook</a></li>
 				</ul>
 				</div>	
@@ -366,53 +255,15 @@ $result = mysql_query($sql, $link);
 
   </footer>
   
-   <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-	<script src="js/jquery-3.2.1.min.js"</script>
-	<script src="js/bootstrap.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-	<script src="js/ui.js"></script>
-  
-  <script>
-var chart = AmCharts.makeChart("chartdiv", {
-    "type": "pie",
-    "theme": "light",
-    "innerRadius": "40%",
-    "gradientRatio": [-0.4, -0.4, -0.4, -0.4, -0.4, -0.4, 0, 0.1, 0.2, 0.1, 0, -0.2, -0.5],
-    "dataProvider": [{
-        "country": "startup1",
-        "litres": 501.9
-    }, {
-        "country": "startup2",
-        "litres": 301.9
-    }, {
-        "country": "startup3",
-        "litres": 201.1
-    }, {
-        "country": "startup4",
-        "litres": 165.8
-    }, {
-        "country": "startup5",
-        "litres": 139.9
-    }, {
-        "country": "startup6",
-        "litres": 128.3
-    }],
-    "balloonText": "[[value]]",
-    "valueField": "litres",
-    "titleField": "country",
-    "balloon": {
-        "drop": true,
-        "adjustBorderColor": false,
-        "color": "#FFFFFF",
-        "fontSize": 16
-    },
-    "export": {
-        "enabled": true
-    }
-});
-</script>
-  
-  
+	     <!-- Optional JavaScript -->
+		 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+		  <script src="js/jquery-3.2.1.min.js"</script>
+		  <script src="js/bootstrap.js"></script>
+		  <script src="js/bootstrap.min.js"></script>
+		  <script src="js/ui.js"></script>
+	  
+	
+		 
+		 
   
 </html>
