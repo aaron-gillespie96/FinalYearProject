@@ -3,32 +3,94 @@ html {
     height: 100%;
 }
 body {
-  background-color: #9bbcf2 !important;
+  background-color: #ffffff !important;
 }
-
-
-/*-----------------------------------*/
-/* The parallax CSS */
-/*-----------------------------------*/
-#whatis{
-	background-color: #98b4e2;
-
-	
-}
-
-#investorinfo{
-	 background-image: url("../images/white.png");
-	 
-}
-
 #hello3{
-	background-color: #baf2e9;
-	
+	background-color: #000000;
+}
+
+/*-----------------------------------*/
+/* Start of the different sections on the CompanyPage */
+/*-----------------------------------*/
+#companypage-top{
+	 margin-top: 15px;
+ }
+ 
+ .companypage-background{
+	 background-color: white;
+ }
+ 
+
+/*-----------------------------------*/
+/* End of the different sections on the CompanyPage */
+/*-----------------------------------*/
+
+/*-----------------------------------*/
+/* Styling the different sections on the Marketplace */
+/*-----------------------------------*/
+#marketplace-top{
+	 margin-top: 15px;
+ }
+ 
+  #marketplace-bottom{
+	 margin-bottom: 500px;
+ }
+ 
+
+#marketplace-background{
+	background-color: white;
+}
+
+#trending-now{
+	background-color: #d7ecf2;
+}
+ .section-widths-marketplace{
+	 margin-top: 35px;
+ }
+ 
+ #search-category-section{
+	 background-color: #d7ecf2;
+ }
+/*-----------------------------------*/
+/* End of the different sections on the Marketplace */
+/*-----------------------------------*/
+/*-----------------------------------*/
+/* Styling the different sections on the homepage */
+/*-----------------------------------*/
+
+
+.section-style{
+	margin-top: 25px;
+}
+ .section-widths{
+	 margin-top: 35px;
+	 margin-bottom: 35px;
+ }
+ #video-section-top{
+	 margin-top: 75px;
+ }
+
+
+#whatis{
+	background-color: #d7ecf2;
 }
 
 #startupinfo{
-	 background-image: url("../images/white3.png");
+	 background-color: #e8d6f1;
 	 
+}
+
+#investorinfo{
+	 background-color: #c3f1c7;
+	 
+}
+
+#ourfavourites{
+	background-color: white;
+}
+
+#contact-us{
+	background-color: white;
 }
 
 #updateStartup{
@@ -39,44 +101,28 @@ body {
 	margin-bottom: 90px;
 }
 
-#map {
-	margin-bottom: 60px;
+/*-----------------------------------*/
+/* End of syling the different sections on the homepage */
+/*-----------------------------------*/
+
+/*-----------------------------------*/
+/* The parallax CSS */
+/*-----------------------------------*/
+@media (max-width 500px) {
+ 	.parallax1 {
+		display: none;
+	}
 }
-#contact-us{
-	margin-top:60px;
-	margin-bottom: 60px
-}
 
-
-
-
-.getStarted{
-	width: 150px;
-	height: 50px;
-	margin-left:35%;
-}
-.parallax1, .parallax2, .parallax3 {
-  position: relative;
+.parallax1 {
+  background-image: url("../images/tinge-middle.jpg");
+  min-height: 30%;
+    position: relative;
   background-attachment: fixed;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
 }
-.parallax1 {
-  background-image: url("../images/pattern1.jpg");
-  min-height: 30%;
-}
-
-.parallax2 {
-  background-image: url("../images/download.jpg");
-  min-height: 30%;
-}
-
-.parallax3{
-  background-image: url("img_parallax3.jpg");
-  min-height: 400px;
-}
-
 
 /*-----------------------------------*/
 /* End of the Parralax CSS*/
@@ -161,7 +207,7 @@ body {
 	  color: #fff;
 	}
 	.btn-linkedin:active, .btn-linkedin:hover {
-	  background: #084461;
+	  background: #c0cbe5;
 	  color: #fff;
 	}
 
@@ -199,41 +245,8 @@ button:hover, a:hover {
     opacity: 0.7;
 }
 
-#section1 {
-	margin-top: 60px;
-	margin-bottom: 10px;
-	max-height: 610px;
-}
-
-#section2{
-	color: black;
-	margin-top: 60px;
-	margin-bottom: 60px;
-}
-
-#section3{
-	color: black;
-	margin-top: 60px;
-	margin-bottom: 60px;
-}
-
-#section4{
-	color: black;
-	margin-top: 60px;
-	margin-bottom: 200px;
-}
 
 
-
-
-#aboutUs {
-	margin-top: 60px;
-}
-
-#invOpt{
-	margin-top: 60px;
-	border: 1px  solid black;
-}
 
 
 @media (max-width: 768px) {
@@ -272,12 +285,15 @@ button:hover, a:hover {
 	margin-top: 60px;
 }
 
+#tokenCreator{
+	margin-top: 70px;
+	margin-bottom: 150px;
+}
 
-
-
-
-	
-
+#tokenCreator-instructions{
+	background-color: white;
+	height: 400px;
+}
 
 /*-----------------------------------*/
 /* end of the sections CSS */
@@ -288,7 +304,8 @@ button:hover, a:hover {
 /* Navigation bar  CSS */
 /*-----------------------------------*/
 .navbar{
-	background-color: black!important;
+	background-color: white! important;
+	font-size: 18px;
 }
 .navbar .navbar-brand {
   padding-top: 0px;
@@ -789,19 +806,38 @@ text-align: center;
     margin-bottom: 30px;
 }
 
-#marketplace{
-	margin-top: 60px;
+
+#edit-button{
+	float:right;
+	margin-top: 5px;
+	margin-right: 5px;
 }
 
+#div2{
+	display: none;
+	height:400px;
+	border: 1px solid black;
+}
+
+#div1{
+	font-size: 20px;
+	height:400px;
+	border: 1px solid black;
+}
+
+.text{
+	margin-top: 60px;
+	margin-left: 10px;
+}
 /*-----------------------------------*/
 /*End of Marketplace CSS*/
 /*-----------------------------------*/
 footer {
-	background:  black;
-	color: #eee;
+	background:  white;
+	color: black;
 	font-size: 11px;
 	padding: 20px;
-
+	font-family: "Trebuchet MS";
 }
 
 ul.unstyled {

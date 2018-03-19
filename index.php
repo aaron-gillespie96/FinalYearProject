@@ -2,7 +2,6 @@
 <?php  session_start();
 ?>
 
-
 	  <head>
 	  
 		<!-- Required meta tags -->
@@ -45,17 +44,13 @@
 					<!--End of Button-->
 					
 					<!-- The Navbar Brand Logo-->
-					<a class="navbar-brand" href="index.php"><img src="images/evan.png" alt="ICOHub Logo"></a>
+					<a class="navbar-brand" href="index.php"><img src="images/logo.png" alt="ICOHub Logo"></a>
 				</div>
 		
 				<div class="nav-collapse collapse navbar-collapse">
 					<ul class="nav navbar-nav">
 						<li >
 							<a href="marketplace.php">Marketplace</a>
-						</li>
-						
-						<li>
-							<a href="#" class="#">Services</a>
 						</li>
 					</ul>
 					
@@ -91,18 +86,14 @@
 							else
 								echo "Guest";
 							?> <strong class="caret"></strong></a>
-							
+							 <?php if(isset($_SESSION['Type']) && !empty($_SESSION['Type']) ){ ?>
 							<ul class="dropdown-menu">
 								<li>
-									<a href="companyName.php"><span class="glyphicon glyphicon-wrench"></span>View Profile</a>
+									<a href="myCompanyProfile.php"><span class="glyphicon glyphicon-eye-open"></span>View Profile</a>
 								</li>
 								
 								<li>
-									<a href="startupDetails.php"><span class="glyphicon glyphicon-refresh"></span> Update Profile</a>
-								</li>
-								
-								<li>
-									<a href="#"><span class="glyphicon glyphicon-briefcase"></span> Billing</a>
+									<a href="startupDetails.php"><span class="glyphicon glyphicon-pencil"></span> Update Profile</a>
 								</li>
 								
 								<li class="divider"></li>
@@ -111,10 +102,29 @@
 									<a href="logout.php"><span class="glyphicon glyphicon-off" ></span> Sign out</a>
 								</li>
 							</ul>
+							
+							 <?php } else { ?>
+							
+							<ul class="dropdown-menu">
+								<li>
+									<a href="investorProfile.php"><span class="glyphicon glyphicon-eye-open"></span>View Profile</a>
+								</li>
+								
+								<li>
+									<a href="startupDetails.php"><span class="glyphicon glyphicon-pencil"></span> Update Profile</a>
+								</li>
+								<li>
+									<a href="TokenCreator.php"><span class="glyphicon glyphicon-arrow-right"></span> Token Creator</a>
+								</li>
+								<li>
+									<a href="logout.php"><span class="glyphicon glyphicon-off" ></span> Sign out</a>
+								</li>
+							</ul>
+							 <?php } ?>
 						</li>
 						
 						<li>
-							<a href="#" data-toggle="modal" data-target="#login-modal" id="loginID" <span class="glyphicon glyphicon-log-in"></span>  Login</a>
+							<a href  data-toggle="modal" data-target="#login-modal" id="loginID" <span class="glyphicon glyphicon-log-in"></span>  Login</a>
 						</li>
 					</ul><!-- end nav pull-right -->
 				</div><!-- end nav-collapse -->
@@ -127,7 +137,13 @@
 		  <div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
     	  <div class="modal-dialog">
 				<div class="loginmodal-container">
-					<form name="signupform" action="login_nextpage.php" method="get">
+					<form name="signupform" action="login_nextpage.php" method="post">
+					<select name="name" id="name" required>
+									<option value="">Select an option</option>
+										<option value="Startup">Startup</option>
+											<option value="Investor">Investor</option>
+										
+									</select>
 <input type="text" name="username" placeholder="enter username" required>
 <input type="password"  name="password" 
 placeholder="enter password" required>
@@ -140,14 +156,22 @@ placeholder="enter password" required>
 			</div>
 		  </div>
 		  
+		  	
+
 		  
 		    <div class="modal fade" id="register-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
     	  <div class="modal-dialog">
 				<div class="loginmodal-container">
-					<form name="signupform" action="signup_nextpage.php" method="get">
+					<form name="signupform" action="signup_nextpage.php" method="post">
 <input type="text" name="username" placeholder="enter username" required>
 <input type="password" id="passwordID" name="password" placeholder="enter password" required>
 <input type="password" name="cpassword" placeholder="enter confirm password">
+<select name="name" id="name" required>
+									<option value="">Select an option</option>
+										<option value="Startup">Startup</option>
+											<option value="Investor">Investor</option>
+										
+									</select>
 <input type="submit" value="signup">
 </form>
 				  <div class="login-help">
@@ -156,53 +180,53 @@ placeholder="enter password" required>
 				</div>
 			</div>
 		  </div>
-
+		  
+	
+	
 		
 		
 		
-		
+		<div class ="parallax1">
 			<div class="container">
-				<div class="row">
-					<div id="section1">
+				<div class="row" id="video-section-top">
+					
 							<div class="col-sm-2"></div>						
-								<div class="col-sm-8" id="info1">
+								<div class="col-sm-8 ">
 									<div class="embed-responsive embed-responsive-4by3">
 										<iframe class="embed-responsive-item" style="max-width:840; max-height:500;" src="https://www.youtube.com/embed/v9uFp_XavVw"></iframe>
 									</div>
 								</div>
 							<div class="col-sm-2"></div>
 					</div>
-				</div>
 			</div> 
 			<!--</div>-->
 			
-			
+			<div class="section-style">
 				<div class="container" id="whatis">
 					<div class="row">
-						<div id="section2">
-							<div class="col-sm-6" id="info2">
+							<div class="col-sm-6 section-widths">
 								<h1 class="mainTitle">What is ICOHub?</h1>
 								<p class="aboutIcohub">ICOHub is a unique and innovative investment platform that allows start-up companies to
 								launch an ICO without any blockchain knowledge. We offer a package of services tailored for
 								our two key demographics start-up companies and investors.</p>
 							</div>
 							
-							<div class="col-sm-6" id="info2">
+							<div class="col-sm-6 section-widths">
 								<img src="images/mobilephone1.png" class="img-responsive" alt="Mobile Phone">
 							</div>
-						</div>
 					</div> 
 				</div>
+				</div>
 				
-				
+				<div class="section-style">
 				<div class="container" id="investorinfo">
 					<div class="row">
-						<div id="section3">
-							<div class="col-sm-6">
+						
+							<div class="col-sm-6 section-widths">
 							
 							</div>
 							
-							<div class="col-sm-6">
+							<div class="col-sm-6 section-widths">
 							<h1 class="mainTitle">Investors</h1>
 							<p class="aboutIcohub"> bLorem Ipsum is simply dummy text of the printing and typesetting industry. 
 							Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, 
@@ -218,20 +242,21 @@ placeholder="enter password" required>
 									<span class="glyphicon glyphicon-ok aboutIcohub"></span> Billing
 								</li><br></P>
 						</ul>
-  <button type="button" class="btn btn-primary btn-cons getStarted responsive">Get Started</button>
+   <a href="marketplace.php" title="Blog" class="btn btn-linkedin btn-lg" data-toggle="modal" data-target="#login-modal"></i> Get Started</a
 							</div>
 							
-						</div>
+						
 					</div>
+				</div>
 				</div>
 			
 				
 							
-						
+				<div class="section-style">
 					<div class="container" id="startupinfo">
 					<div class="row">
-						<div id="section3">
-							<div class="col-sm-6">
+					
+							<div class="col-sm-6 section-widths">
 							<h1 class="mainTitle">Start-Ups</h1>
 							<p class="aboutIcohub"> bLorem Ipsum is simply dummy text of the printing and typesetting industry. 
 							Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, 
@@ -247,21 +272,20 @@ placeholder="enter password" required>
 									<span class="glyphicon glyphicon-ok aboutIcohub"></span> Billing
 								</li><br></P>
 						</ul>
-  <button type="button" class="btn btn-primary btn-cons getStarted">Get Started</button>
+ <a href="" title="Blog" class="btn btn-linkedin btn-lg" data-toggle="modal" data-target="#login-modal"></i>Get Started</a>
 							</div>
-								<div class="col-sm-6">
-							
-							</div>
+								<div class="col-sm-6 section-widths"></div>
 							
 		
-						</div>
+						
 					</div>
 				</div> 
+				</div>
 				
-				
+				<div class="section-style">
 				<div class="container" id="ourfavourites">
 					<div class="row">
-						<div class="col-sm-12" id="marketplace">
+						<div class="col-sm-12 section-widths">
 								<h1 class="mainTitles">Our Favourites</h1>
 				
 						
@@ -275,7 +299,7 @@ placeholder="enter password" required>
 						<div class="card-text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 
 						1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic 
 						</div>
-						<a style="margin-top: 10px;" href="#" class="btn btn-success">Read more</a>
+						<a style="margin-top: 10px;" href="CompanyProfile.php" class="btn btn-success">Read more</a>
 					</div>
 				</div>
 			</div>
@@ -290,7 +314,7 @@ placeholder="enter password" required>
 						<div class="card-text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 
 						1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic 
 						</div>
-						<a style="margin-top: 10px;" href="#" class="btn btn-success">Read more</a>
+						<a style="margin-top: 10px;" href="CompanyProfile.php" class="btn btn-success">Read more</a>
 					</div>
 				</div>
 			</div>
@@ -305,14 +329,14 @@ placeholder="enter password" required>
 						<div class="card-text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 
 						1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic 
 						</div>
-						<a style="margin-top: 10px;" href="#" class="btn btn-success">Click here</a>
+						<a style="margin-top: 10px;" href="CompanyProfile.php" class="btn btn-success">Read More</a>
 					</div>
 				</div>
 			</div>
 			
 			<div class="container">
 			<div class="row">
-			<div class="col-sm-12">
+			<div class="col-sm-12 ">
 			<a href="marketplace.php" title="Blog" class="btn btn-linkedin btn-lg"></i> View Our Marketplace</a>
 			</div>
 			</div>
@@ -323,19 +347,22 @@ placeholder="enter password" required>
 							
 						</div>
 					</div>
-				</div> 
+				</div>
+			</div>
 				
 				
 				
+				
+			<div class="section-style">
 				<div class="container">
 					<div class="row">
-						<div class="col-sm-12" id="our-team">
+						<div class="col-sm-12 section-widths" id="our-team">
 								<h1 class="mainTitles">Our Team</h1>
 						</div>
 					
 						<div class="container">
 							<div class="row">
-								<div class="col-sm-3">
+								<div class="col-sm-3 section-widths">
 									<div class="profile-card">
 										  <img src="images/evand.jpg" class="img-circle" alt="Evan" style="width:100%">
 										  
@@ -343,7 +370,7 @@ placeholder="enter password" required>
 								</div>
 							
 								
-								<div class="col-sm-3">
+								<div class="col-sm-3 section-widths">
 									<div class="profile-card" id="evans-card">
 										<h3><span class="glyphicon glyphicon-user"></span> Evan Doherty </h3>
 											<h4> Co-Founder </h4>
@@ -354,13 +381,13 @@ placeholder="enter password" required>
 									</div>
 								</div>
 
-							<div class="col-sm-3">
+							<div class="col-sm-3 section-widths">
 								<div class="profile-card">
 										  <img src="images/aaron1.jpg" class="img-circle" alt="Aaron" style="width:100%">
 									</div>
 								</div>
 								
-								<div class="col-sm-3">
+								<div class="col-sm-3 section-widths">
 									<div class="profile-card" id="aarons-card">
 											<h3> <span class="glyphicon glyphicon-user"></span> Aaron Gillespie </h3>
 											<h4> Co-Founder </h4>
@@ -374,6 +401,7 @@ placeholder="enter password" required>
 						</div>
 					</div>
 				</div>
+				</div>
 
 
 						
@@ -382,10 +410,10 @@ placeholder="enter password" required>
 
 						
 
-
-       <div class="container">
-                <div class="row" id="contact-us">
-                    <div class="col-sm-8" >
+<div class="section-style">
+       <div class="container" id="contact-us">
+                <div class="row">
+                    <div class="col-sm-8 section-widths">
                         <div class="contactForm">
                             <form>
                                 <h3>Contact Us</h3>
@@ -415,7 +443,7 @@ placeholder="enter password" required>
 						</div>
 
 					</div>
-                    <div class="col-sm-4">
+                    <div class="col-sm-4 section-widths">
                         <div class="contact-add-box">
                             <h4>Get in touch</h4>
                             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi eget leo.</p>
@@ -432,14 +460,16 @@ placeholder="enter password" required>
                 </div>
             </div>
 			
+			<div class="section-style">
 			<div class="container" >
-			<div class="row" id="map">
-			<div class="col-sm-12" >
+			<div class="row">
+			<div class="col-sm-12 section-widths" >
 			<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2379.663773063783!2d-6.258975184847709!3d53.38506517951241!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x48670e1b2f9d5d03%3A0x12bb45984107c2a8!2sDCU+-+Dublin+City+University!5e0!3m2!1sen!2sie!4v1518470013026" width="100%" height="400px" frameborder="0" style="border:0" allowfullscreen></iframe>
 			</div>
 			</div>
 			</div>
-      
+			</div>
+      </div>
 						
 					
 				
@@ -474,7 +504,7 @@ placeholder="enter password" required>
 				<div class="col-sm-3">
 				<h6>Follow Us</h6>
 				<ul class="unstyled">
-					<li><img src="images/twitter2.png"class="img-responsive"><a href="https://twitter.com/ICOHubInvest">Twitter</a></li>
+					<li><a class="btn btn-social-icon btn-instagram"><i class="fa fa-instagram"></i></a>
 					<li><a href="https://www.facebook.com/ICOHub-2214663765433262/">Facebook</a></li>
 				</ul>
 				</div>	
@@ -489,19 +519,20 @@ placeholder="enter password" required>
 		  <script src="js/bootstrap.js"></script>
 		  <script src="js/bootstrap.min.js"></script>
 		  <script src="js/ui.js"></script>
-	  
-		<!--Carousel function to allow slider-->
-		  <script type="text/javascript">
-		  $(document).ready(fucntion()) {$("#my-slider").carousel();
-		  }
-		  </script>
+		  
 		  <script>
-		  $(function () {
-		  $(document).scroll(function () {
-			var $nav = $(".navbar-fixed-top");
-			$nav.toggleClass('scrolled', $(this).scrollTop() > $nav.height());
-		  });
-		});
-		</script>
+	  
+		$(function() {
+  return $(".modal").on("show.bs.modal", function() {
+    var curModal;
+    curModal = this;
+    $(".modal").each(function() {
+      if (this !== curModal) {
+        $(this).modal("hide");
+      }
+    });
+  });
+});
+</script>
   
 </html>

@@ -7,6 +7,7 @@ $servername = "localhost";
 $username = "root";
 $password = "hhCEiY41iknJ";
 $dbname = "icohub";
+$name = $_POST['name'];
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
@@ -23,7 +24,7 @@ $saltedPW =  $escapedPW . $salt;
 ///sha256 is a hashing algorithm
 $hashedPW = hash('sha256', $saltedPW); 
     
-    $sql="insert into Startup(username,password,salt) 
+    $sql="insert into $name(username,password,salt) 
  value('$usernameVal','$hashedPW','$salt')";
     $result=$conn->query($sql);
     if($result==true)
@@ -34,3 +35,4 @@ $hashedPW = hash('sha256', $saltedPW);
 }
 
 ?>
+

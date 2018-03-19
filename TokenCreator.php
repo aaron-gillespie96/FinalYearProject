@@ -9,6 +9,7 @@
 		<link rel="stylesheet" href="css/index.css">
 		<link rel="stylesheet" href="css/bootstrap.min.css">
 		
+		
 		<!-- Global site tag (gtag.js) - Google Analytics -->
 		<script async src="https://www.googletagmanager.com/gtag/js?id=UA-115336551-1"></script>
 	<script language='javascript' type='text/javascript'>
@@ -50,60 +51,51 @@ input.setCustomValidity('');
 		
 				<div class="nav-collapse collapse navbar-collapse">
 					<ul class="nav navbar-nav">
-						<li class="">
+						<li >
 							<a href="marketplace.php">Marketplace</a>
-						</li>
-						
-						<li>
-							<a href="#" class="#">Services</a>
 						</li>
 					</ul>
 					
 					
 					<ul class="nav navbar-nav navbar-right">
 					<?php            
- if(isset($_SESSION['user_name']) && !empty($_SESSION['user_name']) ){
-   
-     ?>
-     <style>
-     #signupID
-     {
-         display:none;
-     }
-     #loginID
-     {
-         display:none;
-     } 
-     </style>
-    <?php } else{ ?>
-    <style>
-     #signoutID
-     {
-         display:none;
-     }
-     </style>
+	 if(isset($_SESSION['user_name']) && !empty($_SESSION['user_name']) ){
+	   
+		 ?>
+		 <style>
+		 #signupID
+		 {
+			 display:none;
+		 }
+		 #loginID
+		 {
+			 display:none;
+		 } 
+		 </style>
+		<?php } else{ ?>
+		<style>
+		 #signoutID
+		 {
+			 display:none;
+		 }
+		 </style>
 	 <?php } //else end of if(isset($_SESSION['user_name'])....?>
 					
 						<li class="dropdown">
 							<a href="" class="dropdown-toggle" data-toggle="dropdown" id="signoutID"><span class="glyphicon glyphicon-user"></span> <?php
-							session_start();
 							if (isset($_SESSION["user_name"]) && !empty ($_SESSION["user_name"]))
 								echo  $_SESSION["user_name"];
 							else
 								echo "Guest";
 							?> <strong class="caret"></strong></a>
-							
+							 <?php if(isset($_SESSION['Type']) && !empty($_SESSION['Type']) ){ ?>
 							<ul class="dropdown-menu">
 								<li>
-									<a href="companyName.php"><span class="glyphicon glyphicon-wrench"></span>View Profile</a>
+									<a href="myCompanyProfile.php"><span class="glyphicon glyphicon-eye-open"></span>View Profile</a>
 								</li>
 								
 								<li>
-									<a href="startupDetails.php"><span class="glyphicon glyphicon-refresh"></span> Update Profile</a>
-								</li>
-								
-								<li>
-									<a href="#"><span class="glyphicon glyphicon-briefcase"></span> Billing</a>
+									<a href="startupDetails.php"><span class="glyphicon glyphicon-pencil"></span> Update Profile</a>
 								</li>
 								
 								<li class="divider"></li>
@@ -112,10 +104,29 @@ input.setCustomValidity('');
 									<a href="logout.php"><span class="glyphicon glyphicon-off" ></span> Sign out</a>
 								</li>
 							</ul>
+							
+							 <?php } else { ?>
+							
+							<ul class="dropdown-menu">
+								<li>
+									<a href="investorProfile.php"><span class="glyphicon glyphicon-eye-open"></span>View Profile</a>
+								</li>
+								
+								<li>
+									<a href="startupDetails.php"><span class="glyphicon glyphicon-pencil"></span> Update Profile</a>
+								</li>
+								<li>
+									<a href="TokenCreator.php"><span class="glyphicon glyphicon-arrow-right"></span> Token Creator</a>
+								</li>
+								<li>
+									<a href="logout.php"><span class="glyphicon glyphicon-off" ></span> Sign out</a>
+								</li>
+							</ul>
+							 <?php } ?>
 						</li>
 						
 						<li>
-							<a href="#" data-toggle="modal" data-target="#login-modal" id="loginID" <span class="glyphicon glyphicon-log-in"></span>  Login</a>
+							<a href  data-toggle="modal" data-target="#login-modal" id="loginID" <span class="glyphicon glyphicon-log-in"></span>  Login</a>
 						</li>
 					</ul><!-- end nav pull-right -->
 				</div><!-- end nav-collapse -->
@@ -158,7 +169,53 @@ oninput="check(this)" required>
 				</div>
 			</div>
 		  </div>
+		  
+		  	<div class ="parallax1">
+<div class="container">
+<div class="row" id="tokenCreator">
+<div class="col-sm-6">
 
+		  <h1>ICOHub Contract Generator</h1>
+
+<div id="whichNetwork"></div>
+
+<br>
+
+<div id="instructions"></div>
+
+<hr>
+
+<div class="form-group">
+  <textarea class="form-control" rows="1" id="symbol" placeholder="Symbol (of type string)" style="overflow:auto"></textarea>
+</div>
+<div class="form-group">
+  <textarea class="form-control" rows="1" id="name" placeholder="Name (of type string)" style="overflow:auto"></textarea>
+</div>
+<div class="form-group">
+  <textarea class="form-control" rows="1" id="decimals" placeholder="Decimals (of type uint8)" style="overflow:auto"></textarea>
+</div>
+<div class="form-group">
+  <textarea class="form-control" rows="1" id="rate" placeholder="Rate (of type uint256)" style="overflow:auto"></textarea>
+</div>
+
+<a href="#!" onclick="App.deploy()" button id="button" class="btn btn-primary btn-block">Deploy my crowdsale contract!</a>
+
+<br>
+
+<i><div id="statusText"></div></i>
+
+<hr>
+
+</div>
+
+<div class="col-sm-6" id="tokenCreator-instructions">
+<h2>Istructions</h2>
+</div>
+
+
+</div>
+</div>
+</div>
 		
 		
 	  </body>

@@ -56,60 +56,51 @@ input.setCustomValidity('');
 		
 				<div class="nav-collapse collapse navbar-collapse">
 					<ul class="nav navbar-nav">
-						<li class="">
+						<li >
 							<a href="marketplace.php">Marketplace</a>
-						</li>
-						
-						<li>
-							<a href="#" class="#">Services</a>
 						</li>
 					</ul>
 					
 					
 					<ul class="nav navbar-nav navbar-right">
 					<?php            
- if(isset($_SESSION['user_name']) && !empty($_SESSION['user_name']) ){
-   
-     ?>
-     <style>
-     #signupID
-     {
-         display:none;
-     }
-     #loginID
-     {
-         display:none;
-     } 
-     </style>
-    <?php } else{ ?>
-    <style>
-     #signoutID
-     {
-         display:none;
-     }
-     </style>
+	 if(isset($_SESSION['user_name']) && !empty($_SESSION['user_name']) ){
+	   
+		 ?>
+		 <style>
+		 #signupID
+		 {
+			 display:none;
+		 }
+		 #loginID
+		 {
+			 display:none;
+		 } 
+		 </style>
+		<?php } else{ ?>
+		<style>
+		 #signoutID
+		 {
+			 display:none;
+		 }
+		 </style>
 	 <?php } //else end of if(isset($_SESSION['user_name'])....?>
 					
 						<li class="dropdown">
 							<a href="" class="dropdown-toggle" data-toggle="dropdown" id="signoutID"><span class="glyphicon glyphicon-user"></span> <?php
-							session_start();
 							if (isset($_SESSION["user_name"]) && !empty ($_SESSION["user_name"]))
 								echo  $_SESSION["user_name"];
 							else
 								echo "Guest";
 							?> <strong class="caret"></strong></a>
-							
+							 <?php if(isset($_SESSION['Type']) && !empty($_SESSION['Type']) ){ ?>
 							<ul class="dropdown-menu">
 								<li>
-									<a href="companyName.php"><span class="glyphicon glyphicon-wrench"></span>View Profile</a>
+									<a href="myCompanyProfile.php"><span class="glyphicon glyphicon-eye-open"></span>View Profile</a>
 								</li>
 								
 								<li>
-									<a href="startupDetails.php"><span class="glyphicon glyphicon-refresh"></span> Update Profile</a>
-								</li>
-								
-								<li>
-									<a href="#"><span class="glyphicon glyphicon-briefcase"></span> Billing</a>
+									<a href="startupDetails.php"><span class="glyphicon glyphicon-pencil"></span> Update Profile</a>
 								</li>
 								
 								<li class="divider"></li>
@@ -118,10 +109,29 @@ input.setCustomValidity('');
 									<a href="logout.php"><span class="glyphicon glyphicon-off" ></span> Sign out</a>
 								</li>
 							</ul>
+							
+							 <?php } else { ?>
+							
+							<ul class="dropdown-menu">
+								<li>
+									<a href="investorProfile.php"><span class="glyphicon glyphicon-eye-open"></span>View Profile</a>
+								</li>
+								
+								<li>
+									<a href="startupDetails.php"><span class="glyphicon glyphicon-pencil"></span> Update Profile</a>
+								</li>
+								<li>
+									<a href="TokenCreator.php"><span class="glyphicon glyphicon-arrow-right"></span> Token Creator</a>
+								</li>
+								<li>
+									<a href="logout.php"><span class="glyphicon glyphicon-off" ></span> Sign out</a>
+								</li>
+							</ul>
+							 <?php } ?>
 						</li>
 						
 						<li>
-							<a href="#" data-toggle="modal" data-target="#login-modal" id="loginID" <span class="glyphicon glyphicon-log-in"></span>  Login</a>
+							<a href  data-toggle="modal" data-target="#login-modal" id="loginID" <span class="glyphicon glyphicon-log-in"></span>  Login</a>
 						</li>
 					</ul><!-- end nav pull-right -->
 				</div><!-- end nav-collapse -->
@@ -161,175 +171,246 @@ input.setCustomValidity('');
 				</div>
 			</div>
 
-		
-		<div class="container">
+		<div class ="parallax1">
+		<br></br><br></br>
+	
+		<div class="container" style="background-color: white;">
 			<div class="row" id="investorProfile">
+			
 				<div class="col-sm-6">
-				<h3><u>My Account</u></h3>
+					<h3><u>My Account Details</u></h3>
+							<a href="#" class="btn btn-primary a-btn-slide-text" onclick="switchVisible();"id="edit-button">
+							<span class="glyphicon glyphicon-edit" aria-hidden="true" ></span>
+							<span><strong>Edit Details</strong></span>            
+							</a>
+							 
+							<div id="Div1">	
+								<div class="text">
+									<b>Full name: </b><?php session_start();
+							if (isset( $_SESSION["Fullname"]) && !empty (  $_SESSION["Fullname"]))
+								echo $_SESSION["Fullname"];
+							else 
 				
-				<h4>Details:<br>
+								echo "No Name Asssociated with this account";?><br>
+									<b>Address Line 1: </b> <?php session_start();
+							if (isset( $_SESSION["Address1"]) && !empty (  $_SESSION["Address1"]))
+								echo $_SESSION["Address1"];
+							else 
 				
-				<?php
-
-$link = mysql_connect('localhost', 'root', 'hhCEiY41iknJ'); 
-mysql_select_db('icohub', $link);
-$sql    = 'SELECT Fname, Address FROM investors';
-$result = mysql_query($sql, $link);
-?>
-
-<?php 
- $row = mysql_fetch_assoc($result); ?>
- 
-      Name: <?php echo $row['Fname']; ?><br> 
-      Address: <?php echo $row['Address']; ?>
-    
-	
-
-	
-
-
-
+								echo "No Address associated with this account";?><br>
+								<b>Address Line 2: </b> <?php session_start();
+							if (isset( $_SESSION["Address2"]) && !empty (  $_SESSION["Address2"]))
+								echo $_SESSION["Address2"];
+							?><br>
+								
+								<b>County/State: </b> <?php session_start();
+							if (isset( $_SESSION["County"]) && !empty (  $_SESSION["County"]))
+								echo $_SESSION["County"];
+							?><br>
+								
+								<b>Country: </b> <?php session_start();
+							if (isset( $_SESSION["Country"]) && !empty (  $_SESSION["Country"]))
+								echo $_SESSION["Country"];
+							?> <br>
+								
+								<b>Phone No: </b> <?php session_start();
+							if (isset( $_SESSION["Phone_No"]) && !empty (  $_SESSION["Phone_No"]))
+								echo $_SESSION["Phone_No"];
+							else 
 				
+								echo "No Phone Number associated with this account";?><br>
+								
+								<b>Email: </b> <?php session_start();
+							if (isset( $_SESSION["Email"]) && !empty (  $_SESSION["Email"]))
+								echo $_SESSION["Email"];
+							else 
+				
+								echo "No Email Address associated with this account";?>
+								</div>
+							</div>
+							
+							
+							<div id="Div2">
+								<div class="text">
+								First name:
+
+								Last name
+								</div>
+							</div>
 				</div>
-				
-				<div class="col-sm-6">
-					<div id="chartdiv"></div>
-				</div>
+			
+			<div class="col-sm-6 ">
+				<div id="chartdiv" class></div>
+			</div>
 				
 			</div>
 		</div>
 		
-		<div class="container">
-	<div class="row">
-	<div class="col-sm-12">
-	 <div id="accordion" role="tablist" aria-multiselectable="true">
-  
-  <div class="card">
-    <div class="card-header" role="tab" id="headingTwo">
-      <h5 class="mb-0">
-        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-         Inventments
-        </a>
-      </h5>
-    </div>
-    <div id="collapseTwo" class="collapse" role="tabpanel" aria-labelledby="headingTwo">
-      <div class="card-block">
-        <table class="table">
-  <thead>
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col"><u>Name</u></th>
-      <th scope="col"><u>Price</u></th>
-      <th scope="col"><u>Balance</u></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <td>Startup1</td>
-      <td>1.50</td>
-      <td>1728</td>
-    </tr>
-    <tr>
-      <th scope="row">2</th>
-      <td>Startup2</td>
-      <td>6.4</td>
-      <td>1022</td>
-    </tr>
-    <tr>
-      <th scope="row">3</th>
-      <td>Startup3</td>
-      <td>0.68</td>
-      <td>100</td>
-    </tr>
-  </tbody>
-</table>
-	 </div>
-    </div>
-  </div>
-  <div class="card">
-    <div class="card-header" role="tab" id="headingThree">
-      <h5 class="mb-0">
-        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-         Watchlist
-        </a>
-      </h5>
-    </div>
-    <div id="collapseThree" class="collapse" role="tabpanel" aria-labelledby="headingThree">
-      <div class="card-block">
-  	       <table class="table">
-  <thead>
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col"><u>Name</u></th>
-      <th scope="col"><u>Price</u></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <td>Startup1</td>
-      <td>1.50</td>
-    </tr>
-    <tr>
-      <th scope="row">2</th>
-      <td>Startup2</td>
-      <td>6.4</td>
-    </tr>
-    <tr>
-      <th scope="row">3</th>
-      <td>Startup3</td>
-      <td>0.68</td>
-    </tr>
-  </tbody>
-</table>
-	 </div>
-    </div>
-  </div>
-   <div class="card">
-    <div class="card-header" role="tab" id="headingFour">
-      <h5 class="mb-0">
-        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-         Recent Activity
-        </a>
-      </h5>
-    </div>
-    <div id="collapseFour" class="collapse" role="tabpanel" aria-labelledby="headingFour">
-      <div class="card-block">
-  	       <table class="table">
-  <thead>
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col"><u>Name</u></th>
-      <th scope="col"><u>Price</u></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <td>Startup1</td>
-      <td>1.50</td>
-    </tr>
-    <tr>
-      <th scope="row">2</th>
-      <td>Startup2</td>
-      <td>6.4</td>
-    </tr>
-    <tr>
-      <th scope="row">3</th>
-      <td>Startup3</td>
-      <td>0.68</td>
-    </tr>
-  </tbody>
-</table>
-	 </div>
-    </div>
-  </div>
-</div>
-	</div>
-	</div>
-</div>
 		
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-12">
+					<div id="accordion" role="tablist" aria-multiselectable="true">
+  
+					<div class="card">
+						<div class="card-header" role="tab" id="headingTwo">
+							<h5 class="mb-0">
+								<a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+									Inventments
+								</a>
+							</h5>
+						</div>
+						
+							<div id="collapseTwo" class="collapse" role="tabpanel" aria-labelledby="headingTwo">
+							
+							
+								<div class="card-block">
+									<table class="table">
+										<thead>
+											<tr>
+											  <th scope="col">#</th>
+											  <th scope="col"><u>Name</u></th>
+											  <th scope="col"><u>Price</u></th>
+											  <th scope="col"><u>Balance</u></th>
+											</tr>
+										</thead>
+										<tbody>
+										      <?php require ("dbc.php");
+											  $user_name = $_SESSION['Investor_id']; 
+?>
+<?php
+$SQL = "SELECT Company_Name, Token_Price FROM Investments Where Investor_id = '$user_name'";
+			
+		
+			mysql_select_db($dbname);
+			$result = mysql_query($SQL, $conn);
+
+//now in the loop you've got to be careful with the css classes, as your html shows, they won't be always the same. But this should give you some insight on how it works.
+
+while($fetch = mysql_fetch_array($result)){
+
+    $divHtml .='<tr>';// add css classes and the like here. In case you don't know, the .= operators concatenate the strings that will make your html code.
+    $divHtml .='  <th scope="row">1</th>'; 
+	 $divHtml .='    <td>'. $fetch['Company_Name'] .'</td>'; 
+	  $divHtml .='    <td>'. $fetch["Token_Price"] .'</td>'; 
+	   $divHtml .='    <td>1728</td>';
+ $divHtml .='    </tr>';
+ 
+}
+?>
+ <?php echo $divHtml; ?>
+											
+										 </tbody>
+								</table>
+							  </div>
+							</div>
+						</div>
+						
+						
+					  <div class="card">
+							<div class="card-header" role="tab" id="headingThree">
+								<h5 class="mb-0">
+									<a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+										Watchlist
+									</a>
+								</h5>
+							</div>
+							
+							<div id="collapseThree" class="collapse" role="tabpanel" aria-labelledby="headingThree">
+								<div class="card-block">
+									<table class="table">
+										  <thead>
+											<tr>
+											  <th scope="col">#</th>
+											  <th scope="col"><u>Name</u></th>
+											  <th scope="col"><u>Price</u></th>
+											</tr>
+										  </thead>
+										   <tbody>
+											
+											<?php require ("dbc.php");
+											  $user_name = $_SESSION['Investor_id']; 
+?>
+<?php
+$SQL = "SELECT Company_Name, Token_Price FROM Watchlist Where Investor_id = '$user_name'";
+			
+		
+			mysql_select_db($dbname);
+			$result = mysql_query($SQL, $conn);
+
+//now in the loop you've got to be careful with the css classes, as your html shows, they won't be always the same. But this should give you some insight on how it works.
+
+while($fetch = mysql_fetch_array($result)){
+
+    $div2Html .='<tr>';// add css classes and the like here. In case you don't know, the .= operators concatenate the strings that will make your html code.
+    $div2Html .='  <th scope="row">1</th>'; 
+	 $div2Html .='    <td>'. $fetch['Company_Name'] .'</td>'; 
+	  $div2Html .='    <td>'. $fetch["Token_Price"] .'</td>'; 
+ $div2Html .='    </tr>';
+ 
+}
+?>
+ <?php echo $div2Html; ?>
+										  </tbody>
+									</table>
+								</div>
+							</div>
+					  </div>
+					  
+					  
+					   <div class="card">
+							<div class="card-header" role="tab" id="headingFour">
+								<h5 class="mb-0">
+									<a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+										Recent Activity
+									</a>
+								</h5>
+							</div>
+							
+							<div id="collapseFour" class="collapse" role="tabpanel" aria-labelledby="headingFour">
+								<div class="card-block">
+									<table class="table">
+										<thead>
+											<tr>
+												<th scope="col">#</th>
+												<th scope="col"><u>Name</u></th>
+												<th scope="col"><u>Price</u></th>
+											</tr>
+										</thead>
+										<tbody>
+											<?php require ("dbc.php");
+											  $user_name = $_SESSION['Investor_id']; 
+?>
+<?php
+$SQL = "SELECT Company_Name, Token_Price FROM recentactivity Where Investor_id = '$user_name'";
+			
+		
+			mysql_select_db($dbname);
+			$result = mysql_query($SQL, $conn);
+
+//now in the loop you've got to be careful with the css classes, as your html shows, they won't be always the same. But this should give you some insight on how it works.
+
+while($fetch = mysql_fetch_array($result)){
+
+    $div3Html .='<tr>';// add css classes and the like here. In case you don't know, the .= operators concatenate the strings that will make your html code.
+    $div3Html .='  <th scope="row">1</th>'; 
+	 $div3Html .='    <td>'. $fetch['Company_Name'] .'</td>'; 
+	  $div3Html .='    <td>'. $fetch["Token_Price"] .'</td>'; 
+ $div3Html .='    </tr>';
+ 
+}
+?>
+ <?php echo $div3Html; ?>
+										</tbody>
+									</table>
+								</div>
+							</div>
+					    </div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 
 	  </body>
   
@@ -372,47 +453,74 @@ $result = mysql_query($sql, $link);
 	<script src="js/bootstrap.js"></script>
     <script src="js/bootstrap.min.js"></script>
 	<script src="js/ui.js"></script>
+	
+	      <?php require ("dbc.php");
+											  $user_name = $_SESSION['Investor_id']; 
+?>
+<?php
+$SQL = "SELECT Company_Name, Token_Price FROM Investments Where Investor_id = '$user_name'";
+			
+		
+			mysql_select_db($dbname);
+			$result = mysql_query($SQL, $conn);
+
+//now in the loop you've got to be careful with the css classes, as your html shows, they won't be always the same. But this should give you some insight on how it works.
+
+while($fetch = mysql_fetch_array($result)){
+
+    $div4Html .='{';// add css classes and the like here. In case you don't know, the .= operators concatenate the strings that will make your html code.
+    $div4Html .='  "Investment": " '. $fetch['Company_Name'] .' ",'; 
+	 $div4Html .=' "investment weight": '. $fetch["Token_Price"] .' '; 
+	  $div4Html .='},'; 
+ 
+}
+?>
+ <?php echo $div4Html; ?>
+				  <script>
+							var chart = AmCharts.makeChart("chartdiv", {
+							"type": "pie",
+							"theme": "light",
+							"innerRadius": "40%",
+							"gradientRatio": [-0.4, -0.4, -0.4, -0.4, -0.4, -0.4, 0, 0.1, 0.2, 0.1, 0, -0.2, -0.5],
+							"dataProvider": [<?php echo $div4Html; ?>],
+							"balloonText": "[[value]]",
+							"valueField": "investment weight",
+							"titleField": "Investment",
+							"balloon": {
+								"drop": true,
+								"adjustBorderColor": false,
+								"color": "#FFFFFF",
+								"fontSize": 16
+							},
+							"export": {
+								"enabled": true
+							}
+						});
+				</script>
+				
+				<script>
+						$(".link").click(function(e) {
+							e.preventDefault();
+							$('.content-container div').fadeOut('slow');
+							$('#' + $(this).data('rel')).fadeIn('slow');
+						});
+				</script>
   
-  <script>
-var chart = AmCharts.makeChart("chartdiv", {
-    "type": "pie",
-    "theme": "light",
-    "innerRadius": "40%",
-    "gradientRatio": [-0.4, -0.4, -0.4, -0.4, -0.4, -0.4, 0, 0.1, 0.2, 0.1, 0, -0.2, -0.5],
-    "dataProvider": [{
-        "country": "startup1",
-        "litres": 501.9
-    }, {
-        "country": "startup2",
-        "litres": 301.9
-    }, {
-        "country": "startup3",
-        "litres": 201.1
-    }, {
-        "country": "startup4",
-        "litres": 165.8
-    }, {
-        "country": "startup5",
-        "litres": 139.9
-    }, {
-        "country": "startup6",
-        "litres": 128.3
-    }],
-    "balloonText": "[[value]]",
-    "valueField": "litres",
-    "titleField": "country",
-    "balloon": {
-        "drop": true,
-        "adjustBorderColor": false,
-        "color": "#FFFFFF",
-        "fontSize": 16
-    },
-    "export": {
-        "enabled": true
-    }
-});
-</script>
-  
-  
+			    <script>
+					function switchVisible() {
+								if (document.getElementById('Div1')) {
+
+									if (document.getElementById('Div1').style.display == 'none') {
+										document.getElementById('Div1').style.display = 'block';
+										document.getElementById('Div2').style.display = 'none';
+									}
+									else {
+										document.getElementById('Div1').style.display = 'none';
+										document.getElementById('Div2').style.display = 'block';
+									}
+								}
+					}  
+			  </script>
+			  
   
 </html>

@@ -6,6 +6,7 @@ $servername = "localhost";
 $username = "root";
 $password = "hhCEiY41iknJ";
 $dbname = "icohub";
+$name = $_POST['name'];
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
@@ -41,7 +42,7 @@ setcookie("username", '',$cookie_time_fromOffset );
   //save this user and pass as cookie if remember checked end
      
 //now check user and pass verification
- $query = "select * from Startup where username = '$usernameVal';";
+ $query = "select * from $name where username = '$usernameVal';";
  
      $resultSet = mysqli_query($conn,$query);
 
@@ -49,7 +50,7 @@ setcookie("username", '',$cookie_time_fromOffset );
                            //check noraml user salt and pass
                            //echo "noraml";
                             
- $saltQuery = "select salt from Startup where username = '$usernameVal';";
+ $saltQuery = "select salt from $name where username = '$usernameVal';";
 $result = mysqli_query($conn,$saltQuery);
 $row = mysqli_fetch_assoc($result);
 $salt = $row['salt'];
@@ -58,7 +59,7 @@ $saltedPW =  $escapedPW . $salt;
 
 $hashedPW = hash('sha256', $saltedPW);
 
- $query = "select * from Startup where username = '$usernameVal' 
+ $query = "select * from $name where username = '$usernameVal' 
 and password = '$hashedPW' ";
                         
                             $resultSet = mysqli_query($conn,$query);
@@ -70,8 +71,23 @@ and password = '$hashedPW' ";
                                $_SESSION["user_id"]=$row["Startup_id"];
                                $_SESSION["user_name"]=$row["username"];
 							   $_SESSION["companyname"]=$row["Company_Name"];
-							   $_SESSION["company_desc"]=$row["Company_desc"];
-							   $_SESSION["vid_link"]=$row["vid_link"];
+							   $_SESSION["Company_Desc"]=$row["Company_Desc"];
+							   $_SESSION["Token_Name"]=$row["Token_Name"];
+							   $_SESSION["Total_Tokens"]=$row["Total_Tokens"];
+							   $_SESSION["Token_Price"]=$row["Token_Price"];
+							   $_SESSION["Launch_Date"]=$row["Launch_Date"];
+							   $_SESSION["Company_Category"]=$row["Company_Category"];
+							    $_SESSION["Investor_id"]=$row["Investor_id"];
+								 $_SESSION["Fullname"]=$row["Fullname"];
+								  $_SESSION["Address1"]=$row["Address1"];
+								  $_SESSION["Address2"]=$row["Address2"];
+								  $_SESSION["County"]=$row["County"];
+								  $_SESSION["Country"]=$row["Country"];
+								    $_SESSION["Phone_No"]=$row["Phone_No"];
+									$_SESSION["Email"]=$row["Email"];
+							   
+							   $_SESSION["Type"]=$row["Type"];
+							   
 
 							   
 							   
