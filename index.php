@@ -57,27 +57,26 @@
 					
 					<ul class="nav navbar-nav navbar-right">
 					<?php            
-	 if(isset($_SESSION['user_name']) && !empty($_SESSION['user_name']) ){
-	   
-		 ?>
-		 <style>
-		 #signupID
-		 {
-			 display:none;
-		 }
-		 #loginID
-		 {
-			 display:none;
-		 } 
-		 </style>
-		<?php } else{ ?>
-		<style>
-		 #signoutID
-		 {
-			 display:none;
-		 }
-		 </style>
-	 <?php } //else end of if(isset($_SESSION['user_name'])....?>
+					if(isset($_SESSION['user_name']) && !empty($_SESSION['user_name']) ){
+					?>
+					<style>
+					#signupID
+					{
+					display:none;
+					}
+					#loginID
+					{
+					display:none;
+					} 
+					</style>
+					<?php } else{ ?>
+					<style>
+					 #signoutID
+					 {
+						 display:none;
+					 }
+					 </style>
+					<?php } ?>
 					
 						<li class="dropdown">
 							<a href="" class="dropdown-toggle" data-toggle="dropdown" id="signoutID"><span class="glyphicon glyphicon-user"></span> <?php
@@ -95,6 +94,9 @@
 								<li>
 									<a href="startupDetails.php"><span class="glyphicon glyphicon-pencil"></span> Update Profile</a>
 								</li>
+								<li>
+									<a href="TokenCreator.php"><span class="glyphicon glyphicon-arrow-right"></span> Token Creator</a>
+								</li>
 								
 								<li class="divider"></li>
 								
@@ -108,13 +110,6 @@
 							<ul class="dropdown-menu">
 								<li>
 									<a href="investorProfile.php"><span class="glyphicon glyphicon-eye-open"></span>View Profile</a>
-								</li>
-								
-								<li>
-									<a href="startupDetails.php"><span class="glyphicon glyphicon-pencil"></span> Update Profile</a>
-								</li>
-								<li>
-									<a href="TokenCreator.php"><span class="glyphicon glyphicon-arrow-right"></span> Token Creator</a>
 								</li>
 								<li>
 									<a href="logout.php"><span class="glyphicon glyphicon-off" ></span> Sign out</a>
@@ -133,53 +128,52 @@
 		</div><!-- end navbar -->
 		
 	
-		  
+		  <!--Login Modal -->
 		  <div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
-    	  <div class="modal-dialog">
-				<div class="loginmodal-container">
-					<form name="signupform" action="login_nextpage.php" method="post">
-					<select name="name" id="name" required>
-									<option value="">Select an option</option>
-										<option value="Startup">Startup</option>
+			  <div class="modal-dialog">
+					<div class="loginmodal-container">
+						<form name="signupform" action="login_nextpage.php" method="post">
+							<select name="name" id="name" required>
+											<option value="">Select an option</option>
+											<option value="Startup">Startup</option>
 											<option value="Investor">Investor</option>
-										
-									</select>
-<input type="text" name="username" placeholder="enter username" required>
-<input type="password"  name="password" 
-placeholder="enter password" required>
-<input type="submit" value="login">
-</form>
-				  <div class="login-help">
-					<a href data-toggle="modal" data-target="#register-modal">Register</a> - <a href="#">Forgot Password</a>
-				  </div>
+												
+							</select>
+									<input type="text" name="username" placeholder="enter username" required>
+									<input type="password"  name="password" placeholder="enter password" required>
+									<input type="submit" value="login">
+						</form>
+					  <div class="login-help">
+						<a href data-toggle="modal" data-target="#register-modal">Register</a> - <a href="#">Forgot Password</a>
+					  </div>
+					</div>
 				</div>
-			</div>
 		  </div>
-		  
+		  <!--End of Login Modal-->
 		  	
 
-		  
-		    <div class="modal fade" id="register-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
-    	  <div class="modal-dialog">
+		  <!--Register Modal-->
+		<div class="modal fade" id="register-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+			<div class="modal-dialog">
 				<div class="loginmodal-container">
 					<form name="signupform" action="signup_nextpage.php" method="post">
-<input type="text" name="username" placeholder="enter username" required>
-<input type="password" id="passwordID" name="password" placeholder="enter password" required>
-<input type="password" name="cpassword" placeholder="enter confirm password">
-<select name="name" id="name" required>
-									<option value="">Select an option</option>
-										<option value="Startup">Startup</option>
-											<option value="Investor">Investor</option>
-										
-									</select>
-<input type="submit" value="signup">
-</form>
-				  <div class="login-help">
-					<a href="#">Register</a> - <a href="#">Forgot Password</a>
-				  </div>
+						<input type="text" name="username" placeholder="enter username" required>
+						<input type="password" id="passwordID" name="password" placeholder="enter password" required>
+						<input type="password" name="cpassword" placeholder="enter confirm password">
+						<select name="name" id="name" required>
+								<option value="">Select an option</option>
+								<option value="Startup">Startup</option>
+								<option value="Investor">Investor</option>
+						</select>
+						<input type="submit" value="signup">
+					</form>
+					<div class="login-help">
+						<a href="#">Register</a> - <a href="#">Forgot Password</a>
+					</div>
 				</div>
 			</div>
-		  </div>
+		 </div>
+		 <!-- End of Register Modal-->
 		  
 	
 	
@@ -190,16 +184,18 @@ placeholder="enter password" required>
 			<div class="container">
 				<div class="row" id="video-section-top">
 					
-							<div class="col-sm-2"></div>						
+							<div class="col-sm-2"></div>
+								<!--Embedded video in the homepage --> 
 								<div class="col-sm-8 ">
 									<div class="embed-responsive embed-responsive-4by3">
 										<iframe class="embed-responsive-item" style="max-width:840; max-height:500;" src="https://www.youtube.com/embed/v9uFp_XavVw"></iframe>
 									</div>
 								</div>
+								<!-- End of the embedded video in the homepage -->
 							<div class="col-sm-2"></div>
 					</div>
 			</div> 
-			<!--</div>-->
+			
 			
 			<div class="section-style">
 				<div class="container" id="whatis">
@@ -242,7 +238,7 @@ placeholder="enter password" required>
 									<span class="glyphicon glyphicon-ok aboutIcohub"></span> Billing
 								</li><br></P>
 						</ul>
-   <a href="marketplace.php" title="Blog" class="btn btn-linkedin btn-lg" data-toggle="modal" data-target="#login-modal"></i> Get Started</a
+						<a href="marketplace.php" title="Blog" class="btn btn-linkedin btn-lg" data-toggle="modal" data-target="#login-modal"></i> Get Started</a
 							</div>
 							
 						
@@ -272,7 +268,7 @@ placeholder="enter password" required>
 									<span class="glyphicon glyphicon-ok aboutIcohub"></span> Billing
 								</li><br></P>
 						</ul>
- <a href="" title="Blog" class="btn btn-linkedin btn-lg" data-toggle="modal" data-target="#login-modal"></i>Get Started</a>
+						<a href="" title="Blog" class="btn btn-linkedin btn-lg" data-toggle="modal" data-target="#login-modal"></i>Get Started</a>
 							</div>
 								<div class="col-sm-6 section-widths"></div>
 							
@@ -410,66 +406,66 @@ placeholder="enter password" required>
 
 						
 
-<div class="section-style">
-       <div class="container" id="contact-us">
-                <div class="row">
-                    <div class="col-sm-8 section-widths">
-                        <div class="contactForm">
-                            <form>
-                                <h3>Contact Us</h3>
-                                <div class="row">
-                                    <div class="contact-box"></div>
-                                    <div class="col-md-6 form-group">
-                                        <input name="fname" class="form-control" placeholder="First Name" type="text">
-                                    </div>
-                                    <div class="col-md-6 form-group">
-                                        <input name="lname" class="form-control" placeholder="Last Name" type="text">
-                                    </div>
-                                    <div class="col-md-6 form-group">
-                                        <input name="subject" class="form-control" placeholder="Subject" type="text">
-                                    </div>
-                                    <div class="col-md-6 form-group">
-                                        <input name="email" class="form-control" placeholder="Email" type="email">
-                                    </div>
-                                   <label class="col-md-12 control-label" for="textarea"></label>
-                                    <div class="col-md-12">                     
-                                    <textarea class="form-control" id="textarea" name="textarea"></textarea>
-                                     </div>
-                                    <div class="col-md-12 text-right">
-                                        <button class="contactForm-btn" type="submit">send message</button>
-                                    </div>
-								</div>
-                             </form> 
-						</div>
+		<div class="section-style">
+		   <div class="container" id="contact-us">
+					<div class="row">
+						<div class="col-sm-8 section-widths">
+							<div class="contactForm">
+								<form>
+									<h3>Contact Us</h3>
+									<div class="row">
+										<div class="contact-box"></div>
+										<div class="col-md-6 form-group">
+											<input name="fname" class="form-control" placeholder="First Name" type="text">
+										</div>
+										<div class="col-md-6 form-group">
+											<input name="lname" class="form-control" placeholder="Last Name" type="text">
+										</div>
+										<div class="col-md-6 form-group">
+											<input name="subject" class="form-control" placeholder="Subject" type="text">
+										</div>
+										<div class="col-md-6 form-group">
+											<input name="email" class="form-control" placeholder="Email" type="email">
+										</div>
+									   <label class="col-md-12 control-label" for="textarea"></label>
+										<div class="col-md-12">                     
+										<textarea class="form-control" id="textarea" name="textarea"></textarea>
+										 </div>
+										<div class="col-md-12 text-right">
+											<button class="contactForm-btn" type="submit">send message</button>
+										</div>
+									</div>
+								 </form> 
+							</div>
 
-					</div>
-                    <div class="col-sm-4 section-widths">
-                        <div class="contact-add-box">
-                            <h4>Get in touch</h4>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi eget leo.</p>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi eget leo.</p>
-                            <ul class="addressDetails">
-                                <li><i class="glyphicon glyphicon-map-marker"></i>DCU, Glasnevin, Whitehall, Dublin 9.</li>
-                                <li><i class="glyphicon glyphicon-earphone"></i>0860760370.</li>
-                                <li><i class="glyphicon glyphicon-paperclip"></i>icohub@gmail.com</li>
-                            </ul>
-                               
 						</div>
-                      </div>
-					  
-                </div>
-            </div>
+						<div class="col-sm-4 section-widths">
+							<div class="contact-add-box">
+								<h4>Get in touch</h4>
+								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi eget leo.</p>
+								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi eget leo.</p>
+								<ul class="addressDetails">
+									<li><i class="glyphicon glyphicon-map-marker"></i>DCU, Glasnevin, Whitehall, Dublin 9.</li>
+									<li><i class="glyphicon glyphicon-earphone"></i>0860760370.</li>
+									<li><i class="glyphicon glyphicon-paperclip"></i>icohub@gmail.com</li>
+								</ul>
+								   
+							</div>
+						  </div>
+						  
+					</div>
+				</div>
 			
 			<div class="section-style">
-			<div class="container" >
-			<div class="row">
-			<div class="col-sm-12 section-widths" >
-			<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2379.663773063783!2d-6.258975184847709!3d53.38506517951241!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x48670e1b2f9d5d03%3A0x12bb45984107c2a8!2sDCU+-+Dublin+City+University!5e0!3m2!1sen!2sie!4v1518470013026" width="100%" height="400px" frameborder="0" style="border:0" allowfullscreen></iframe>
+				<div class="container" >
+					<div class="row">
+						<div class="col-sm-12 section-widths" >
+							<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2379.663773063783!2d-6.258975184847709!3d53.38506517951241!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x48670e1b2f9d5d03%3A0x12bb45984107c2a8!2sDCU+-+Dublin+City+University!5e0!3m2!1sen!2sie!4v1518470013026" width="100%" height="400px" frameborder="0" style="border:0" allowfullscreen></iframe>
+						</div>
+					</div>
+				</div>
 			</div>
-			</div>
-			</div>
-			</div>
-      </div>
+		</div>
 						
 					
 				
@@ -480,59 +476,58 @@ placeholder="enter password" required>
 		
 	  </body>
   
-  <footer>
-	<div class="container">
-		<div class="row">
-			<div class="col-sm-2">
-			<h6>Copyright &copy; ICOHub</h6>
-			<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was populari </p>
+	  <footer>
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-2">
+				<h6>Copyright &copy; ICOHub</h6>
+				<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was populari </p>
+				</div>
+					
+					<div class="col-sm-4">
+					<h6>About Us</h6>
+					<p> Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was populari</p>
+					</div>
+					
+					<div class="col-sm-3">
+					<h6>Navigation</h6>
+					<ul class="unstyled">
+						<li><a href="index.php">Home</a></li>
+						<li><a href="#">Services</a></li>
+					</ul>
+					</div>
+					
+					<div class="col-sm-3">
+					<h6>Follow Us</h6>
+					<ul class="unstyled">
+						<li><a class="btn btn-social-icon btn-instagram"><i class="fa fa-instagram"></i></a>
+						<li><a href="https://www.facebook.com/ICOHub-2214663765433262/">Facebook</a></li>
+					</ul>
+					</div>	
 			</div>
-				
-				<div class="col-sm-4">
-				<h6>About Us</h6>
-				<p> Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was populari</p>
-				</div>
-				
-				<div class="col-sm-3">
-				<h6>Navigation</h6>
-				<ul class="unstyled">
-					<li><a href="index.php">Home</a></li>
-					<li><a href="#">Services</a></li>
-				</ul>
-				</div>
-				
-				<div class="col-sm-3">
-				<h6>Follow Us</h6>
-				<ul class="unstyled">
-					<li><a class="btn btn-social-icon btn-instagram"><i class="fa fa-instagram"></i></a>
-					<li><a href="https://www.facebook.com/ICOHub-2214663765433262/">Facebook</a></li>
-				</ul>
-				</div>	
 		</div>
-	</div>
 
-  </footer>
+	  </footer>
   
 	     <!-- Optional JavaScript -->
-		 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+		 <!-- jQuery first then Bootstrap JS -->
 		  <script src="js/jquery-3.2.1.min.js"</script>
 		  <script src="js/bootstrap.js"></script>
 		  <script src="js/bootstrap.min.js"></script>
-		  <script src="js/ui.js"></script>
 		  
+		  <!-- Function that allows a modal to be hidden when another modal is choosen-->
 		  <script>
-	  
-		$(function() {
-  return $(".modal").on("show.bs.modal", function() {
-    var curModal;
-    curModal = this;
-    $(".modal").each(function() {
-      if (this !== curModal) {
-        $(this).modal("hide");
-      }
-    });
-  });
-});
-</script>
+			$(function() {
+		  return $(".modal").on("show.bs.modal", function() {
+			var curModal;
+			curModal = this;
+			$(".modal").each(function() {
+			  if (this !== curModal) {
+				$(this).modal("hide");
+			  }
+				});
+			  });
+			});
+		</script>
   
 </html>
