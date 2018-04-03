@@ -72,6 +72,7 @@ and password = '$hashedPW' ";
                                $_SESSION["user_name"]=$row["username"];
 							   $_SESSION["companyname"]=$row["Company_Name"];
 							   $_SESSION["Company_Desc"]=$row["Company_Desc"];
+							    $_SESSION["vid_link"]=$row["vid_link"];
 							   $_SESSION["Token_Name"]=$row["Token_Name"];
 							   $_SESSION["Total_Tokens"]=$row["Total_Tokens"];
 							   $_SESSION["Token_Price"]=$row["Token_Price"];
@@ -85,9 +86,8 @@ and password = '$hashedPW' ";
 								  $_SESSION["Country"]=$row["Country"];
 								    $_SESSION["Phone_No"]=$row["Phone_No"];
 									$_SESSION["Email"]=$row["Email"];
-							   
 							   $_SESSION["Type"]=$row["Type"];
-							   
+							    $_SESSION["Company_funding"]=$row["Company_funding"];
 
 							   
 							   

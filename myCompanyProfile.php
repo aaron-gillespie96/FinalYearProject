@@ -28,6 +28,11 @@
 		}
 		</script>
 		
+		<script async src="https://www.googletagmanager.com/gtag/js?id=UA-115336551-1"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+gtag('js',new Date());gtag('config','UA-115336551-1');</script>
+
+		
 	  </head>
   
   
@@ -201,7 +206,7 @@
 								<div class="col-sm-7">
 					
 									
-										<h3><u>About Us</u></h3>
+										<h3>About Us</h3>
 										<div class="embed-responsive embed-responsive-16by9">
 											<iframe class="embed-responsive-item" style="max-width:640; max-height:390;" src="<?php  session_start();
 											if (isset($_SESSION["vid_link"]) && !empty ($_SESSION["vid_link"]))
@@ -219,9 +224,9 @@
 								</div>
 								<br>
 							
-								<div class="col-sm-5">
+								<div class="col-sm-5" id="TokenDetails">
 						 
-							  
+							   <div style="background-color: #dee2e8; padding: 10px;">
 											<h4>Token Details</h4>
 										<div class="card-text" id="myprofile">
 										<b>Token Name: </b>  <?php session_start();
@@ -256,6 +261,26 @@
 												echo "Token information unavailable";?><br>
 										</p>
 										</div>
+										</div>
+										<br><br>
+										 
+										<div style="background-color: #dee2e8; padding: 10px;">
+								<h4>Funds Raised so far: &euro; <?php session_start();
+											if (isset(  $_SESSION["Company_funding"]) && !empty (  $_SESSION["Company_funding"]))
+												echo $_SESSION["Company_funding"];
+											else 
+								
+												echo "Token information unavailable";?> </h4>
+								<div class="card-text">
+								
+								<ul class="list-inline">
+								<li>Time Remaining: <p id="timer"></p></li>
+								<li><button type="button" class="btn btn-primary">Extent</button></li>
+								</ul>
+								<br>
+								
+								</div>
+								</div>
 									
 									<br>
 									<div id="buytokens"
@@ -309,7 +334,11 @@
 						<div class="row" id="section-widths">
 							<div class="col-sm-12" >
 								<h3>Our Whitepaper </h3>
-								<img src="images/pdf.png" class="img-repsonsive" alt="Responsive image">
+								 <div id="downloadContent">
+								<a href="whitepaper/whitepaper.docx">
+									<img src="images/pdf.png" class="img-repsonsive" alt="Responsive image">
+								</a>
+						</div>
 				            </div>
 				        </div>
 					</div>
@@ -355,6 +384,36 @@
 
 		  </footer>
   
+  <script>
+// Set the date we're counting down to
+var countDownDate = new Date("Sep 5, 2018 15:37:25").getTime();
+
+// Update the count down every 1 second
+var x = setInterval(function() {
+
+    // Get todays date and time
+    var now = new Date().getTime();
+    
+    // Find the distance between now an the count down date
+    var distance = countDownDate - now;
+    
+    // Time calculations for days, hours, minutes and seconds
+    var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    
+    // Output the result in an element with id="demo"
+    document.getElementById("timer").innerHTML = days + "d " + hours + "h "
+    + minutes + "m " + seconds + "s ";
+    
+    // If the count down is over, write some text 
+    if (distance < 0) {
+        clearInterval(x);
+        document.getElementById("timer").innerHTML = "EXPIRED";
+    }
+}, 1000);
+</script>
    <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 	<script src="js/jquery-3.2.1.min.js"</script>

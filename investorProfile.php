@@ -18,17 +18,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 		
 		<!-- Global site tag (gtag.js) - Google Analytics -->
-		<script async src="https://www.googletagmanager.com/gtag/js?id=UA-115336551-1"></script>
-	<script language='javascript' type='text/javascript'>
-function check(input) {
-if (input.value != document.getElementById('passwordID').value) {
-input.setCustomValidity('Password Must be Matching.');
-} else {
-// input is valid -- reset the error message
-input.setCustomValidity('');
-}
-}
-</script>
+		
 
 
 		

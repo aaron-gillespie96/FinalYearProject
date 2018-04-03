@@ -12,16 +12,8 @@
 		
 			<!-- Global site tag (gtag.js) - Google Analytics -->
 			<script async src="https://www.googletagmanager.com/gtag/js?id=UA-115336551-1"></script>
-			<script language='javascript' type='text/javascript'>
-			function check(input) {
-			if (input.value != document.getElementById('passwordID').value) {
-			input.setCustomValidity('Password Must be Matching.');
-			} else {
-			// input is valid -- reset the error message
-			input.setCustomValidity('');
-			}
-			}
-			</script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+gtag('js',new Date());gtag('config','UA-115336551-1');</script>
 		
 	  </head>
   
@@ -208,7 +200,37 @@ while($fetch = mysql_fetch_array($result)){
  
 }
  echo  $div1Html;?> </h1>
-							<button type="button"  id="watchlistBtn" class="btn btn-lg btn-success btn-responsive">Add to watchlist</button>
+ 
+ <?php require ("dbc.php");?>
+							<?php
+							$SQL = "SELECT onOrOff FROM watchlist where Investor_id = '5'";
+			
+		
+			mysql_select_db($dbname);
+			$result = mysql_query($SQL, $conn);
+
+//now in the loop you've got to be careful with the css classes, as your html shows, they won't be always the same. But this should give you some insight on how it works.
+
+$fetch = mysql_fetch_array($result);
+
+	   
+		
+
+ 
+
+?> 
+<?php if(isset($fetch["onOrOff"]) && !empty($fetch["onOrOff"]) ){?> 
+<form  action="watchlist.php" method="post">
+							<input type="submit" value="Remove from watchlist" id="watchlistBtn" class="btn btn-lg btn-danger btn-responsive">
+						</form>
+
+						<?php } else { ?>
+						<form  action="watchlist.php" onSubmit="alert('LogoGrab has been added to your watchlist');"method="post">
+							<input type="submit" value="Add to watchlist" id="watchlistBtn" class="btn btn-lg btn-success btn-responsive">
+						</form>
+						
+						
+						 <?php } ?>
 						</div>
 					</div>
 				</div>
@@ -244,7 +266,7 @@ while($fetch = mysql_fetch_array($result)){
 								<div style="background-color: #dee2e8; padding: 10px;">
 								<h4>Buy Tokens</h4>
 								<div class="card-text">
-								<form action="buytoken.php" method="post">
+								<form action="buytoken.php" onSubmit="alert('LogoGrab has been added to your investments');"method="post">
 								Purchase Amount: <input type="number" step="0.01" id="n1" name="n1"> <br>
 								Total Amount: <input type="text" id="result" name="result" style=" background-color : #dee2e8; border:none" readonly> <br>
 								

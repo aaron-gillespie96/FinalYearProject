@@ -1,27 +1,22 @@
 <?php
+
 /* Attempt MySQL server connection. Assuming you are running MySQL
 server with default setting (user 'root' with no password) */
-$link = mysqli_connect("localhost", "root", "Agg2uJKvGUng", "registerfacility");
+$link = mysqli_connect("localhost", "root", "hhCEiY41iknJ", "icohub");
  
 // Check connection
 if($link === false){
     die("ERROR: Could not connect. " . mysqli_connect_error());
 }
-
- $facility_name = $_POST['form2'];
-$facility_type = $_POST['form3'];
-$contact_phone = $_POST['form3'];
-
-
-
+ @session_start();
+ $result = $_POST['result'];
+$user_id =  $_SESSION["Investor_id"];
+$user_name = $_SESSION['user_name'];
+$n1 = $_POST['n1'];  
 
 
 // Attempt insert query execution
-$sql = "insert into facilities(facility_name, facility_type, contact_phone) values ('$facility_name','$facility_type','$contact_phone')";
-
-
-
-
+$sql = "Insert into watchlist (Investor_id, Company_Name, Token_Price, onOrOff) Values ('$user_id', 'LogoGrab', '0.034', '1')";
 if(mysqli_query($link, $sql)){
     echo "Records inserted successfully.";
 
@@ -29,7 +24,7 @@ if(mysqli_query($link, $sql)){
     echo "ERROR: Could not able to execute $sql. " . mysqli_error($link);
 }
 
- 
 // Close connection
 mysqli_close($link);
-?>
+header("location:CompanyProfile.php");	
+?> 

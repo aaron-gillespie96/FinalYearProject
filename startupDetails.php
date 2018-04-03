@@ -23,6 +23,10 @@
 			}
 		</script>
 		
+		<script async src="https://www.googletagmanager.com/gtag/js?id=UA-115336551-1"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+gtag('js',new Date());gtag('config','UA-115336551-1');</script>
+		
 	  </head>
   
   
@@ -143,6 +147,7 @@
 							placeholder="enter password" required>
 							<input type="submit" value="login">
 						</form>
+						
 						  <div class="login-help">
 							<a href data-toggle="modal" data-target="#register-modal">Register</a> - <a href="#">Forgot Password</a>
 						  </div>
