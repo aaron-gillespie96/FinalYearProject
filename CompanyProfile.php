@@ -87,7 +87,7 @@ gtag('js',new Date());gtag('config','UA-115336551-1');</script>
 									<a href="startupDetails.php"><span class="glyphicon glyphicon-pencil"></span> Update Profile</a>
 								</li>
 								<li>
-									<a href="TokenCreator.php"><span class="glyphicon glyphicon-arrow-right"></span> Token Creator</a>
+									<a href="tokenCreator.php"><span class="glyphicon glyphicon-arrow-right"></span> Token Creator</a>
 								</li>
 								
 								<li class="divider"></li>
@@ -176,6 +176,7 @@ gtag('js',new Date());gtag('config','UA-115336551-1');</script>
 							<h1>       
 							<?php require ("dbc.php");?>
 							<?php
+							
 							$SQL = "SELECT * FROM Startup where Startup_id = '1'";
 			
 		
@@ -195,15 +196,26 @@ while($fetch = mysql_fetch_array($result)){
 	   $div6Html .=' '. $fetch["Launch_Date"] .'';
 	    $div7Html .=' '. $fetch["Company_Category"] .'';
 		 $div8Html .=' '. $fetch["vid_link"] .'';
+		 $divlogo .=' '. $fetch["image"] .'';
+		  $msg.= '<img src="data:image/*;base64,'.base64_encode($fetch["image"]). ' " /> ';
 		
 
  
-}
- echo  $div1Html;?> </h1>
+}?><div style=" border: 1px solid black;">
+<ul class="list-inline" style="text-align:center;"><?php session_start();
+											
+												
+		?><li><?php echo  $msg;?> </li>									
+ <li><h1 style="font-size:170%;"><?php echo  $div1Html;?></h1> </li>
+ <ul>
+ </div>
+ <br>
+
  
  <?php require ("dbc.php");?>
 							<?php
-							$SQL = "SELECT onOrOff FROM watchlist where Investor_id = '5'";
+							$user_id =  $_SESSION["Investor_id"];
+							$SQL = "SELECT onOrOff FROM watchlist where Investor_id = '$user_id'";
 			
 		
 			mysql_select_db($dbname);
@@ -218,8 +230,9 @@ $fetch = mysql_fetch_array($result);
 
  
 
-?> 
-<?php if(isset($fetch["onOrOff"]) && !empty($fetch["onOrOff"]) ){?> 
+?><?php if(isset($_SESSION['user_name']) && !empty($_SESSION['user_name']) ){
+	 if(!isset($_SESSION['Type']) && empty($_SESSION['Type']) ){
+ if(isset($fetch["onOrOff"]) && !empty($fetch["onOrOff"]) ){?> 
 <form  action="watchlist.php" method="post">
 							<input type="submit" value="Remove from watchlist" id="watchlistBtn" class="btn btn-lg btn-danger btn-responsive">
 						</form>
@@ -231,6 +244,8 @@ $fetch = mysql_fetch_array($result);
 						
 						
 						 <?php } ?>
+						  <?php } ?>
+						    <?php } ?>
 						</div>
 					</div>
 				</div>
@@ -250,25 +265,27 @@ $fetch = mysql_fetch_array($result);
 					
 						<div class="col-sm-5" id="TokenDetails">
 				 
-					  <div style="background-color: #dee2e8; padding: 10px;">
-									<h4>Token Details</h4>
-								<div class="card-text">Token Name: <?php  echo  $div3Html;?>  <br>
-								Total Tokens: <?php  echo  $div4Html;?><br>
-								Price Per Token: <?php  echo  $div5Html;?><br>
-								Launch Date: <?php  echo  $div6Html;?><br>
-								Category: <?php  echo  $div7Html;?><br>
+					  <div style="background-color: #dee2e8; padding: 10px; border: 1px solid black;"">
+									<h4><u>Token Details</u></h4>
+								<div class="card-text"><b>Token Name:</b> <?php  echo  $div3Html;?>  <br>
+								<b>Total Tokens: </b> <?php  echo  $div4Html;?><br>
+								<b>Price Per Token: </b> <?php  echo  $div5Html;?><br>
+								<b>Launch Date: </b> <?php  echo  $div6Html;?><br>
+								<b>Category:</b> <?php  echo  $div7Html;?><br>
 								
 								</div>
 							</div>
 							
 							<br>
 							<br>
-								<div style="background-color: #dee2e8; padding: 10px;">
-								<h4>Buy Tokens</h4>
+							<?php if(isset($_SESSION['user_name']) && !empty($_SESSION['user_name']) ){ 
+								 if(!isset($_SESSION['Type']) && empty($_SESSION['Type']) ){?>
+								<div style="background-color: #dee2e8; padding: 10px; border: 1px solid black;">
+								<h4><u>Buy Tokens</u></h4>
 								<div class="card-text">
 								<form action="buytoken.php" onSubmit="alert('LogoGrab has been added to your investments');"method="post">
-								Purchase Amount: <input type="number" step="0.01" id="n1" name="n1"> <br>
-								Total Amount: <input type="text" id="result" name="result" style=" background-color : #dee2e8; border:none" readonly> <br>
+								<b>Purchase Amount: </b> <input type="number" step="0.01" id="n1" name="n1"> <a href="" data-toggle="tooltip" title="Please enter the the number of tokens that your wish to buy into the the 'Purchase Amount' field and click the 'calculate total' button to calculate your total cost."><span class="glyphicon glyphicon-info-sign"></span></a><br>
+								<b>Total Cost:</b> <input type="text" id="result" name="result" style=" background-color : #dee2e8; border:none" readonly> <br>
 								
 								<br>
 			
@@ -279,6 +296,8 @@ $fetch = mysql_fetch_array($result);
 								</form>
 								</div>
 								</div>
+							<?php } 
+							}							?>
 								
 							
 						</div>
@@ -302,7 +321,7 @@ $fetch = mysql_fetch_array($result);
 					 <div class="section-style-companypage">
 						 <div class="container companypage-background">
 							<div class="row" id="section-widths">
-								<div class="col-sm-12" >
+								<div class="col-sm-12" style="margin-bottom: 10px;">
 								   <h3>Our Whitepaper </h3>
 								   
 								   <div id="downloadContent">
@@ -413,6 +432,12 @@ function enablesecondbutton() {
     document.getElementById("b2").disabled = false;
 }
 
+</script>
+
+<script>
+$(document).ready(function(){
+    $('[data-toggle="tooltip"]').tooltip(); 
+});
 </script>
    
   

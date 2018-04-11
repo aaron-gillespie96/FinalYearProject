@@ -98,7 +98,7 @@ gtag('js',new Date());gtag('config','UA-115336551-1');</script>
 									<a href="startupDetails.php"><span class="glyphicon glyphicon-pencil"></span> Update Profile</a>
 								</li>
 								<li>
-									<a href="TokenCreator.php"><span class="glyphicon glyphicon-arrow-right"></span> Token Creator</a>
+									<a href="tokenCreator.php"><span class="glyphicon glyphicon-arrow-right"></span> Token Creator</a>
 								</li>
 								
 								<li class="divider"></li>
@@ -179,14 +179,15 @@ gtag('js',new Date());gtag('config','UA-115336551-1');</script>
 		<br></br><br></br>
 		<div class="container" id="trending-now">
 			<div class="row">
-				<div class="col-sm-6 section-widths-marketplace">
-				<h1>Trending now!</h1>
-			Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+				<div class="col-sm-6 section-widths-marketplace" style="margin-top: 129px;">
+				<p style=" font-size: 28px; text-align: center"> The Marketplace is where you can browse all of the current live token sales on ICOHub. Have a look at our trending
+				sales or browse by category below. There is lots of variety to choose from!!</p>
 			
 			</div>
 			
 			
 			<div class="col-sm-6 section-widths-marketplace">
+			<h1>Trending now!</h1>
 					<div id="carousel-section">
 						<!-- Start of icohubCarousel --> 
 								<div class="carousel slide" id="icohubCarousel">
@@ -202,22 +203,23 @@ gtag('js',new Date());gtag('config','UA-115336551-1');</script>
 									<div class="carousel-inner">
 										<div class="item active" id="slide1">
 											<div class="carousel-caption">
-												<h4>Browse ICO's</h4>
-												<p>Join our marketplace now!</p>
+												
+												<a style="color: #000000; text-decoration: none;" href="CompanyProfile.php">View Profile</a>
 											</div><!-- end of item 1 caption-->
 										</div><!-- end item 1 -->
 										
 										<div class="item" id="slide2">
 											<div class="carousel-caption">
-												<h4>Hello</h4>
-												<p></p>
+												
+												
+												<a style="color: #000000; text-decoration: none;" href="CompanyProfile.php">View Profile</a>
 											</div><!-- end of item 2 caption-->
 										</div><!-- end of item 2-->
 										
 										<div class="item" id="slide3">
 											<div class="carousel-caption">
-												<h4>Bitcoin</h4>
-												<p></p>
+												
+												<a style="color: #000000; text-decoration: none;" href="CompanyProfile.php">View Profile</a>
 											</div><!-- end of item 3 caption-->
 										</div><!-- end of item 3-->
 									</div>
@@ -245,27 +247,29 @@ gtag('js',new Date());gtag('config','UA-115336551-1');</script>
 						<button class="btn btn-default filter-button" data-filter="software">Software</button>
 						<button class="btn btn-default filter-button" data-filter="e-commerce">E-Commerce</button>
 						<button class="btn btn-default filter-button" data-filter="fashion">Fashion</button>
-						<button class="btn btn-default filter-button" data-filter="gaming">Gaming</button>
+						<button class="btn btn-default filter-button" data-filter="technology">Technology</button>
 						<button class="btn btn-default filter-button" data-filter="health">Health</button>
 						<button class="btn btn-default filter-button" data-filter="engineering">Engineering</button>
 						<button class="btn btn-default filter-button" data-filter="fintech-finance">Fintech Finance</button>
+						<button class="btn btn-default filter-button" data-filter="security">Security</button>
+						<button class="btn btn-default filter-button" data-filter="other">Other</button>
 					</div>
 					<br/>
 					
 					 <?php require ("dbc.php");?>
-					<?php  $SQL = "SELECT Company_Name, Company_desc, Company_Category FROM Marketplace";
+					<?php  $SQL = "SELECT Company_desc, Company_Category, image FROM Marketplace";
 					mysql_select_db($dbname);
 					$result = mysql_query($SQL, $conn);
 					while($fetch = mysql_fetch_array($result)){
 					$divHtml .='<div class="gallery_product col-sm-4  filter ' . $fetch['Company_Category'] . ' mh-365 mw-365">';// add css classes and the like here. In case you don't know, the .= operators concatenate the strings that will make your html code.
 					$divHtml .=' <div class="card">'; 
 					$divHtml .='    <div class="card-block">'; 
-					$divHtml .='    <img src="images/startup.png" id="card-image" class="img-responsive">'; 
+					$divHtml .='    <img class="img-responsive" src="data:image/*;base64,'.base64_encode($fetch["image"]). ' " /> '; 
 					$divHtml .='    <div class="card-title">';
-					$divHtml .='    <h4>' . $fetch['Company_Name'] . '</h4>';
+					$divHtml .=' <br>';
 					$divHtml .='    </div>';
 					$divHtml .='   <div class="card-text">' . $fetch["Company_desc"] . '</div>';
-					$divHtml .='    <a style="margin-top: 10px;" href="CompanyProfile.php" class="btn btn-success">Read more</a>'; // be careful with this class, as you might need to evaluate it for every run of the loop
+					$divHtml .='    <a style="margin-top: 10px;" href="CompanyProfile.php" class="btn btn-success">View Profile</a>'; // be careful with this class, as you might need to evaluate it for every run of the loop
 					$divHtml .='        </div>';
 					$divHtml .='            </div>';
 					$divHtml .='            </div>';		}  ?>

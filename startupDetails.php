@@ -99,7 +99,7 @@ gtag('js',new Date());gtag('config','UA-115336551-1');</script>
 									<a href="startupDetails.php"><span class="glyphicon glyphicon-pencil"></span> Update Profile</a>
 								</li>
 								<li>
-									<a href="TokenCreator.php"><span class="glyphicon glyphicon-arrow-right"></span> Token Creator</a>
+									<a href="tokenCreator.php"><span class="glyphicon glyphicon-arrow-right"></span> Token Creator</a>
 								</li>
 								
 								<li class="divider"></li>
@@ -183,8 +183,34 @@ gtag('js',new Date());gtag('config','UA-115336551-1');</script>
 			<div class ="parallax1">
 			<div class="container">
 					<div class="row">
-						<div class="col-sm-6" id="first">
-						<h2>Add contact details</h2>
+					<div class="col-sm-5" id="first">
+					<hr style="color: white;">
+						<h2 style="color: white;"> How to update your account? </h2>
+						<ul class="list-unstyled">
+							<li style="color: white;">
+									<span class="glyphicon glyphicon-ok aboutIcohub"></span> Billing
+								</li>
+								
+								<li style="color: white;">
+									<span class="glyphicon glyphicon-ok aboutIcohub"></span> Billing
+								</li>
+						</ul>
+					<hr style="color: white;">
+						<div style="background-color: white; border-radius: 10px; padding: 5px; border: 1px solid #428ff4;">
+						<form action="insertimage.php" onsubmit="alert('Your logo has been uploaded successfully! You will see this change when you logout.');" method="post"  enctype="multipart/form-data">
+<p style="text-align: center;"><b> Please upload your company logo here, so that it can be added to your profile</b></p>
+<input  style="margin: auto;" name="image" id="image" accept="image/*" type="file"><br>
+<div style="text-align: center">
+<input type="submit" value="upload logo" name="submit" disabled />
+</div>
+</form>
+</div>
+						</div>
+						
+						<div class="col-sm-7" id="first" style="background-color: white; border-radius: 10px; padding: 5px; border: 1px solid #428ff4;" >
+						<hr>
+						<h2>Update your details</h2>
+						<hr>
 							<form role="form" id="contactForm" action="updateStartup.php" method="post" enctype="multipart/form-data">
 								<div class="form-group">
 									<label for="companyName">Company Name:</label>
@@ -220,7 +246,7 @@ gtag('js',new Date());gtag('config','UA-115336551-1');</script>
 								</div>
 							
 								<div class="form-group">
-									<label for="category">What Category best suits your business</label>
+									<label for="category">What Category best suits your business:</label>
 												<select name="category" required>
 												<option value="">Select an option</option>
 													<option value="software">Software</option>
@@ -234,13 +260,12 @@ gtag('js',new Date());gtag('config','UA-115336551-1');</script>
 												</select>
 								</div>
 								
-								<div class="form-group">
-									<label for="category">Upload whitepaper</label>
-									<input type="file" name="PDF" id="PDF">
-								</div>
-								<input class="submit" type="submit" value="Send">
+								<input class="submit" type="submit" value="Publish to profile">
 							</form>
+				
+
 						</div>
+						
 					</div>
 				</div>
 			</div>
@@ -278,6 +303,12 @@ gtag('js',new Date());gtag('config','UA-115336551-1');</script>
 			</div>
 		</div>
 	  </footer>
+	  
+	  <script type="text/javascript">
+        $('input:file').on("change", function() {
+    $('input:submit').prop('disabled', !$(this).val()); 
+});
+            </script>
   
 	     <!-- Optional JavaScript -->
 		 <!-- jQuery first, then Popper.js, then Bootstrap JS -->

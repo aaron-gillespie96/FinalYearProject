@@ -19,9 +19,6 @@ $date = $_POST['shootdate'];
 $category = $_POST['category'];
 
 $user_name = $_SESSION['user_name']; 
-var_dump($user_name);
-
-
 
 // Attempt insert query execution
 $sql = "UPDATE Startup SET Company_Name= '$companyname', Company_desc= '$description', vid_link = '$video', Token_Name = '$tokenname', Total_Tokens = '$totaltokens', Token_Price = '$tokenprice', Launch_Date = '$date', Company_Category = '$category', Startup_PDF = '$PDF'  WHERE username = '$user_name'";

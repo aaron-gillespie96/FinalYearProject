@@ -66,7 +66,7 @@ and password = '$hashedPW' ";
 
                            if(@mysqli_num_rows($resultSet) > 0){
 							   $row = mysqli_fetch_assoc($resultSet);
-                               echo "your username and  password is corrent";
+                               echo "your username and  password is correct";
                                session_start();
                                $_SESSION["user_id"]=$row["Startup_id"];
                                $_SESSION["user_name"]=$row["username"];
@@ -88,17 +88,17 @@ and password = '$hashedPW' ";
 									$_SESSION["Email"]=$row["Email"];
 							   $_SESSION["Type"]=$row["Type"];
 							    $_SESSION["Company_funding"]=$row["Company_funding"];
+								 $_SESSION["Ethereum_Value"]=$row["Ethereum_Value"];
+								 $_SESSION["image"]=$row["image"];
 
 							   
 							   
 header("location:index.php");
 }
-else
-{
-echo "your username or password is incorrect";
-}
+
+
 
 }
-     
+  echo "<h2>login Failed></h2>";
 }
 ?>

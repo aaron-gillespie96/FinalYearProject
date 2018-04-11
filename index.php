@@ -11,6 +11,7 @@
 		<link rel="stylesheet" href="css/index.css">
 		<link rel="stylesheet" href="css/bootstrap.min.css">
 		
+		
 		<!-- Global site tag (gtag.js) - Google Analytics -->
 		<script async src="https://www.googletagmanager.com/gtag/js?id=UA-115336551-1"></script>
 		<script language='javascript' type='text/javascript'>
@@ -99,7 +100,7 @@ gtag('js',new Date());gtag('config','UA-115336551-1');</script>
 									<a href="startupDetails.php"><span class="glyphicon glyphicon-pencil"></span> Update Profile</a>
 								</li>
 								<li>
-									<a href="TokenCreator.php"><span class="glyphicon glyphicon-arrow-right"></span> Token Creator</a>
+									<a href="tokenCreator.php"><span class="glyphicon glyphicon-arrow-right"></span> Token Creator</a>
 								</li>
 								
 								<li class="divider"></li>
@@ -131,12 +132,115 @@ gtag('js',new Date());gtag('config','UA-115336551-1');</script>
 			</div><!-- end container -->
 		</div><!-- end navbar -->
 		
-	
+	<?php
+$usernameVal=$_REQUEST["username"];
+//$passwordVAl=$_REQUEST["password"];
+
+$servername = "localhost";
+$username = "root";
+$password = "hhCEiY41iknJ";
+$dbname = "icohub";
+$name = $_POST['name'];
+
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+} 
+else
+{
+
+     $escapedPW = mysqli_real_escape_string($conn,$_REQUEST['password']);
+
+     //save this user and pass as cookie if remeber checked start
+ if (isset($_REQUEST['remember']))
+   $escapedRemember = mysqli_real_escape_string($conn,$_REQUEST['remember']);
+
+ $cookie_time = 60 * 60 * 24 * 30; // 30 days
+  $cookie_time_Onset=$cookie_time+ time();
+  if (isset($escapedRemember)) {
+    /*
+     * Set Cookie from here for one hour
+     * */
+    setcookie("username", $usernameVal, $cookie_time_Onset);
+    setcookie("password", $escapedPW, $cookie_time_Onset);  
+
+  } else {
+
+      $cookie_time_fromOffset=time() -$cookie_time;
+setcookie("username", '',$cookie_time_fromOffset );
+    setcookie("password", '', $cookie_time_fromOffset);  
+
+  }
+  //save this user and pass as cookie if remember checked end
+     
+//now check user and pass verification
+ $query = "select * from $name where username = '$usernameVal';";
+ 
+     $resultSet = mysqli_query($conn,$query);
+
+                           if(@mysqli_num_rows($resultSet) > 0){
+                           //check noraml user salt and pass
+                           //echo "noraml";
+                            
+ $saltQuery = "select salt from $name where username = '$usernameVal';";
+$result = mysqli_query($conn,$saltQuery);
+$row = mysqli_fetch_assoc($result);
+$salt = $row['salt'];
+
+$saltedPW =  $escapedPW . $salt;
+
+$hashedPW = hash('sha256', $saltedPW);
+
+ $query = "select * from $name where username = '$usernameVal' 
+and password = '$hashedPW' ";
+                        
+                            $resultSet = mysqli_query($conn,$query);
+
+                           if(@mysqli_num_rows($resultSet) > 0){
+							   $row = mysqli_fetch_assoc($resultSet);
+                               echo "your username and  password is correct";
+                               session_start();
+                               $_SESSION["user_id"]=$row["Startup_id"];
+                               $_SESSION["user_name"]=$row["username"];
+							   $_SESSION["companyname"]=$row["Company_Name"];
+							   $_SESSION["Company_Desc"]=$row["Company_Desc"];
+							    $_SESSION["vid_link"]=$row["vid_link"];
+							   $_SESSION["Token_Name"]=$row["Token_Name"];
+							   $_SESSION["Total_Tokens"]=$row["Total_Tokens"];
+							   $_SESSION["Token_Price"]=$row["Token_Price"];
+							   $_SESSION["Launch_Date"]=$row["Launch_Date"];
+							   $_SESSION["Company_Category"]=$row["Company_Category"];
+							    $_SESSION["Investor_id"]=$row["Investor_id"];
+								 $_SESSION["Fullname"]=$row["Fullname"];
+								  $_SESSION["Address1"]=$row["Address1"];
+								  $_SESSION["Address2"]=$row["Address2"];
+								  $_SESSION["County"]=$row["County"];
+								  $_SESSION["Country"]=$row["Country"];
+								    $_SESSION["Phone_No"]=$row["Phone_No"];
+									$_SESSION["Email"]=$row["Email"];
+							   $_SESSION["Type"]=$row["Type"];
+							    $_SESSION["Company_funding"]=$row["Company_funding"];
+								 $_SESSION["Ethereum_Value"]=$row["Ethereum_Value"];
+								  $_SESSION["image"]=$row["image"];
+
+							   
+							   
+header("location:index.php");
+}
+
+
+
+}
+ 
+}
+?>
 		  <!--Login Modal -->
 		  <div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
 			  <div class="modal-dialog">
 					<div class="loginmodal-container">
-						<form name="signupform" action="login_nextpage.php" method="post">
+						<form name="signupform" action="" method="post">
 							<select name="name" id="name" required>
 											<option value="">Select an option</option>
 											<option value="Startup">Startup</option>
@@ -221,30 +325,26 @@ gtag('js',new Date());gtag('config','UA-115336551-1');</script>
 				<div class="section-style">
 				<div class="container" id="investorinfo">
 					<div class="row">
-						
-							<div class="col-sm-6 section-widths">
-							
-							</div>
-							
-							<div class="col-sm-6 section-widths">
+					
+					<div class="col-sm-6 section-widths">
 							<h1 class="mainTitle">Investors</h1>
-							<p class="aboutIcohub"> bLorem Ipsum is simply dummy text of the printing and typesetting industry. 
-							Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, 
-							when an unknown printer took a galley of type and scrambled it to make a type specimen book.
-							It has survived not only five centuries, but also the leap into electronic typesetting, remaining
-							essentially unchanged. <br>
+							<p class="aboutIcohub"> ICOHub provides investors with an ICO Marketplace allowing you to browse ICO's all in one place.
+We also provide free tools such as a  <br>
 							<ul class="list-unstyled">
 							<li>
-									<span class="glyphicon glyphicon-ok aboutIcohub"></span> Billing
+									<span class="glyphicon glyphicon-ok aboutIcohub"></span> Secure Ethereum Wallet
 								</li>
 								
 								<li>
-									<span class="glyphicon glyphicon-ok aboutIcohub"></span> Billing
+									<span class="glyphicon glyphicon-ok aboutIcohub"></span> Graphs and vizulisations of your profits.
 								</li><br></P>
 						</ul>
-						<a href="marketplace.php" title="Blog" class="btn btn-linkedin btn-lg" data-toggle="modal" data-target="#login-modal"></i> Get Started</a
+						<a href="marketplace.php" title="Blog" class="btn btn-linkedin btn-lg" data-toggle="modal" data-target="#login-modal"></i> Get Started</a>
 							</div>
-							
+						
+							<div class="col-sm-6 section-widths">
+							<img src="images/investorchart.png" class="img-responsive" alt="investor chart">
+							</div>
 						
 					</div>
 				</div>
@@ -258,23 +358,24 @@ gtag('js',new Date());gtag('config','UA-115336551-1');</script>
 					
 							<div class="col-sm-6 section-widths">
 							<h1 class="mainTitle">Start-Ups</h1>
-							<p class="aboutIcohub"> bLorem Ipsum is simply dummy text of the printing and typesetting industry. 
-							Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, 
-							when an unknown printer took a galley of type and scrambled it to make a type specimen book.
-							It has survived not only five centuries, but also the leap into electronic typesetting, remaining
-							essentially unchanged. <br>
+							<p class="aboutIcohub"> ICOHub provides startups a simple way to launch their own ICO Token which allows startups to gain funding
+from investors with ease. Listing on our marketplace is free and you are only charged a transaction comission
+fee (3%).
+ <br>
 							<ul class="list-unstyled">
 							<li>
-									<span class="glyphicon glyphicon-ok aboutIcohub"></span> Billing
+									<span class="glyphicon glyphicon-ok aboutIcohub"></span> Free listings on our marketplace
 								</li>
 								
 								<li>
-									<span class="glyphicon glyphicon-ok aboutIcohub"></span> Billing
+									<span class="glyphicon glyphicon-ok aboutIcohub"></span> Provides automated token creation
 								</li><br></P>
 						</ul>
 						<a href="" title="Blog" class="btn btn-linkedin btn-lg" data-toggle="modal" data-target="#login-modal"></i>Get Started</a>
 							</div>
-								<div class="col-sm-6 section-widths"></div>
+								<div class="col-sm-6 section-widths">
+								<img src="images/startupprofile.png" class="img-responsive" alt="build, measure, learn image">
+								</div>
 							
 		
 						
@@ -289,50 +390,24 @@ gtag('js',new Date());gtag('config','UA-115336551-1');</script>
 								<h1 class="mainTitles">Our Favourites</h1>
 				
 						
-						<div class="gallery_product col-sm-4  filter e-commerce mh-365 mw-365">
-                <div class="card">
-					<div class="card-block">	
-						<img src="images/startup.png" id="card-image" class="img-responsive">
-						<div class="card-title">
-							<h4>title 1</h4>
-						</div>
-						<div class="card-text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 
-						1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic 
-						</div>
-						<a style="margin-top: 10px;" href="CompanyProfile.php" class="btn btn-success">Read more</a>
-					</div>
-				</div>
-			</div>
-
-           <div class="gallery_product col-sm-4  filter software mh-365 mw-365">
-                <div class="card">
-					<div class="card-block">	
-						<img src="images/startup.png" id="card-image" class="img-responsive">
-						<div class="card-title">
-							<h4>title 1</h4>
-						</div>
-						<div class="card-text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 
-						1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic 
-						</div>
-						<a style="margin-top: 10px;" href="CompanyProfile.php" class="btn btn-success">Read more</a>
-					</div>
-				</div>
-			</div>
-
-             <div class="gallery_product col-sm-4  filter e-commerce mh-365 mw-365">
-                <div class="card">
-					<div class="card-block">	
-						<img src="images/startup.png" id="card-image" class="img-responsive">
-						<div class="card-title">
-							<h4>title 1</h4>
-						</div>
-						<div class="card-text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 
-						1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic 
-						</div>
-						<a style="margin-top: 10px;" href="CompanyProfile.php" class="btn btn-success">Read More</a>
-					</div>
-				</div>
-			</div>
+						 <?php require ("dbc.php");?>
+					<?php  $SQL = "SELECT * FROM ourfavourites";
+					mysql_select_db($dbname);
+					$result = mysql_query($SQL, $conn);
+					while($fetch = mysql_fetch_array($result)){
+					$divHtml .='<div class="gallery_product col-sm-4  filter ' . $fetch['Company_Category'] . ' mh-365 mw-365">';// add css classes and the like here. In case you don't know, the .= operators concatenate the strings that will make your html code.
+					$divHtml .=' <div class="card">'; 
+					$divHtml .='    <div class="card-block">'; 
+					$divHtml .='    <img class="img-responsive" src="data:image/*;base64,'.base64_encode($fetch["image"]). ' " /> '; 
+					$divHtml .='    <div class="card-title">';
+					$divHtml .=' <br>';
+					$divHtml .='    </div>';
+					$divHtml .='   <div class="card-text">' . $fetch["Company_desc"] . '</div>';
+					$divHtml .='    <a style="margin-top: 10px;" href="CompanyProfile.php" class="btn btn-success">View Profile</a>'; // be careful with this class, as you might need to evaluate it for every run of the loop
+					$divHtml .='        </div>';
+					$divHtml .='            </div>';
+					$divHtml .='            </div>';		}  ?>
+					<?php echo $divHtml; ?>
 			
 			<div class="container">
 			<div class="row">
@@ -356,8 +431,8 @@ gtag('js',new Date());gtag('config','UA-115336551-1');</script>
 			<div class="section-style">
 				<div class="container">
 					<div class="row">
-						<div class="col-sm-12 section-widths" id="our-team">
-								<h1 class="mainTitles">Our Team</h1>
+						<div class="col-sm-12 section-widths" id="our-team" style="border: 1px solid white;">
+								<h1 class="mainTitles" style="color: white;">Our Team</h1>
 						</div>
 					
 						<div class="container">
@@ -372,10 +447,10 @@ gtag('js',new Date());gtag('config','UA-115336551-1');</script>
 								
 								<div class="col-sm-3 section-widths">
 									<div class="profile-card" id="evans-card">
-										<h3><span class="glyphicon glyphicon-user"></span> Evan Doherty </h3>
-											<h4> Co-Founder </h4>
-											<p id="university">Dublin City University</p>
-											<a href="https://www.linkedin.com/in/evan-doherty/" title="LinkedIn" class="btn btn-linkedin btn-lg"><i class="fa fa-linkedin fa-fw"></i> LinkedIn</a>
+										<h3 style="color: white;"><span class="glyphicon glyphicon-user"></span> Evan Doherty </h3>
+											<h4 style="color: white;"> Co-Founder </h4>
+											<p style="color: white;" id="university">Dublin City University</p>
+											<a href="https://www.linkedin.com/in/evan-doherty/" title="LinkedIn" class="btn btn-linkedin btn-lg"> LinkedIn</a>
 											<a href="" title="Blog" class="btn btn-linkedin btn-lg"></i> Project Blog</a>
 										  
 									</div>
@@ -389,10 +464,10 @@ gtag('js',new Date());gtag('config','UA-115336551-1');</script>
 								
 								<div class="col-sm-3 section-widths">
 									<div class="profile-card" id="aarons-card">
-											<h3> <span class="glyphicon glyphicon-user"></span> Aaron Gillespie </h3>
-											<h4> Co-Founder </h4>
-											<p id="university">Dublin City University</p>	
-											<a href="https://www.linkedin.com/in/aaron-gillespie/" title="LinkedIn" class="btn btn-linkedin btn-lg"><i class="fa fa-linkedin fa-fw"></i> LinkedIn</a>	
+											<h3 style="color: white;"> <span class="glyphicon glyphicon-user"></span> Aaron Gillespie </h3>
+											<h4 style="color: white;"> Co-Founder </h4>
+											<p style="color: white;" id="university">Dublin City University</p>	
+											<a href="https://www.linkedin.com/in/aaron-gillespie/" title="LinkedIn" class="btn btn-linkedin btn-lg"> LinkedIn</a>	
 											<a href="" title="Blog" class="btn btn-linkedin btn-lg"></i> Project Blog</a>
 									</div>
 								</div>

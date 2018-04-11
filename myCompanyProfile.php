@@ -105,7 +105,7 @@ gtag('js',new Date());gtag('config','UA-115336551-1');</script>
 									<a href="startupDetails.php"><span class="glyphicon glyphicon-pencil"></span> Update Profile</a>
 								</li>
 								<li>
-									<a href="TokenCreator.php"><span class="glyphicon glyphicon-arrow-right"></span> Token Creator</a>
+									<a href="tokenCreator.php"><span class="glyphicon glyphicon-arrow-right"></span> Token Creator</a>
 								</li>
 								
 								<li class="divider"></li>
@@ -191,11 +191,23 @@ gtag('js',new Date());gtag('config','UA-115336551-1');</script>
 						<div class="container companypage-background">
 							<div class="row" id="companypage-top">
 								<div class="col-sm-12">
-								<h1><?php session_start();
+								<div style=" border: 1px solid black;">
+								<ul class="list-inline" style="text-align:center;">
+								<li>
+								
+								
+								<?php session_start();
+											if (isset($_SESSION["image"]) && !empty ($_SESSION["image"]))
+												echo  $msg.= '<img src="data:image/*;base64,'.base64_encode($_SESSION["image"]). ' " /> ';
+											else 
+												echo "Guest";?></li>
+								<li><h1 style="font-size:400%;"><?php session_start();
 											if (isset($_SESSION["companyname"]) && !empty ($_SESSION["companyname"]))
 												echo  $_SESSION["companyname"];
 											else 
-												echo "Guest";?> </h1>
+												echo "Guest";?> </h1></li>
+											</ul>
+											</div>
 								<button type="button"  id="watchlistBtn" class="btn btn-lg btn-success btn-responsive">Add to watchlist</button>
 								</div>
 							</div>
@@ -226,8 +238,8 @@ gtag('js',new Date());gtag('config','UA-115336551-1');</script>
 							
 								<div class="col-sm-5" id="TokenDetails">
 						 
-							   <div style="background-color: #dee2e8; padding: 10px;">
-											<h4>Token Details</h4>
+							   <div style="background-color: #dee2e8; padding: 10px; border: 1px solid black;" >
+											<h4><u>Token Details</u></h4>
 										<div class="card-text" id="myprofile">
 										<b>Token Name: </b>  <?php session_start();
 											if (isset(  $_SESSION["Token_Name"]) && !empty (  $_SESSION["Token_Name"]))
@@ -235,25 +247,25 @@ gtag('js',new Date());gtag('config','UA-115336551-1');</script>
 											else 
 								
 												echo "Token information unavailable";?> <br>
-										Total Tokens: <?php session_start();
+										<b>Total Tokens:</b> <?php session_start();
 											if (isset( $_SESSION["Total_Tokens"]) && !empty (  $_SESSION["Total_Tokens"]))
 												echo $_SESSION["Total_Tokens"];
 											else 
 								
 												echo "Token information unavailable";?><br>
-										Price Per Token: <?php session_start();
+										<b>Price Per Token:</b> <?php session_start();
 											if (isset(  $_SESSION["Token_Price"]) && !empty (  $_SESSION["Token_Price"]))
 												echo $_SESSION["Token_Price"];
 											else 
 								
 												echo "Token information unavailable";?><br>
-										Launch Date: <?php session_start();
+										<b>Launch Date:</b> <?php session_start();
 											if (isset(  $_SESSION["Launch_Date"]) && !empty (  $_SESSION["Launch_Date"]))
 												echo $_SESSION["Launch_Date"];
 											else 
 								
 												echo "Token information unavailable";?><br>
-										Category:<?php session_start();
+										<b>Category: </b><?php session_start();
 											if (isset(  $_SESSION["Company_Category"]) && !empty (  $_SESSION["Company_Category"]))
 												echo $_SESSION["Company_Category"];
 											else 
@@ -264,8 +276,8 @@ gtag('js',new Date());gtag('config','UA-115336551-1');</script>
 										</div>
 										<br><br>
 										 
-										<div style="background-color: #dee2e8; padding: 10px;">
-								<h4>Funds Raised so far: &euro; <?php session_start();
+										<div style="background-color: #dee2e8; padding: 10px; border: 1px solid black;">
+								<h4><u>Funds Raised so far:</u> &euro; <?php session_start();
 											if (isset(  $_SESSION["Company_funding"]) && !empty (  $_SESSION["Company_funding"]))
 												echo $_SESSION["Company_funding"];
 											else 
@@ -274,8 +286,8 @@ gtag('js',new Date());gtag('config','UA-115336551-1');</script>
 								<div class="card-text">
 								
 								<ul class="list-inline">
-								<li>Time Remaining: <p id="timer"></p></li>
-								<li><button type="button" class="btn btn-primary">Extent</button></li>
+								<li><b>Time Remaining:</b> <p id="timer"></p></li>
+								<li><button type="button" class="btn btn-primary">Extend</button></li>
 								</ul>
 								<br>
 								
@@ -334,7 +346,7 @@ gtag('js',new Date());gtag('config','UA-115336551-1');</script>
 						<div class="row" id="section-widths">
 							<div class="col-sm-12" >
 								<h3>Our Whitepaper </h3>
-								 <div id="downloadContent">
+								 <div id="downloadContent" style="margin-bottom: 10px;">
 								<a href="whitepaper/whitepaper.docx">
 									<img src="images/pdf.png" class="img-repsonsive" alt="Responsive image">
 								</a>

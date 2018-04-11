@@ -24,6 +24,11 @@ body {
 	 margin-top: 30px;
  }
  
+ #first {
+	 margin-top: 60px;
+	 margin-bottom: 60px;
+ }
+ 
 
 /*-----------------------------------*/
 /* End of the different sections on the CompanyPage */
@@ -119,7 +124,7 @@ body {
 }
 
 .parallax1 {
-  background-image: url("../images/tinge-middle.jpg");
+  background-image: url("../images/navy.jpg");
   min-height: 30%;
     position: relative;
   background-attachment: fixed;
@@ -286,13 +291,15 @@ button:hover, a:hover {
 }
 
 #investorProfile{
-	margin-top: 60px;
+	margin-top: 10px;
 }
 
-#tokenCreator{
+#TokenCreator{
 	margin-top: 70px;
-	margin-bottom: 150px;
+	margin-bottom: 70px;
 }
+
+
 
 #tokenCreator-instructions{
 	background-color: white;
@@ -360,15 +367,15 @@ button:hover, a:hover {
 #icohubCarousel .item { height: 400px; }
 
 #slide1 {
-	background: url("../images/carousel_medium_01.jpg") top center no-repeat;
+	background: url("../images/carousel_medium_1.jpg") top center no-repeat;
 }
 
 #slide2 {
-	background: url("../images/carousel_medium_02.jpg") top center no-repeat;
+	background: url("../images/carousel_medium_2.jpg") top center no-repeat;
 }
 
 #slide3 {
-	background: url("../images/carousel_medium_03.jpg") top center no-repeat;
+	background: url("../images/carousel_medium_3.jpg") top center no-repeat;
 }
 
 /* Media Queries */
@@ -387,7 +394,7 @@ button:hover, a:hover {
 	}
 	
 	#slide2 {
-		background: url("../images/carousel_small_02.jpg") top center no-repeat;
+		background: url("../images/carousel_small_2.jpg") top center no-repeat;
 	}
 	
 	#slide3 {
@@ -410,15 +417,15 @@ button:hover, a:hover {
 	#icohubCarousel .item { height: 300px; }
 	
 	#slide1 {
-		background: url("../images/carousel_large_01.jpg") top center no-repeat;
+		background: url("../images/carousel_large_1.jpg") top center no-repeat;
 	}
 	
 	#slide2 {
-		background: url("../images/carousel_large_02.jpg") top center no-repeat;
+		background: url("../images/carousel_large_2.jpg") top center no-repeat;
 	}
 	
 	#slide3 {
-		background: url("../images/carousel_large_03.jpg") top center no-repeat;
+		background: url("../images/carousel_large_3.jpg") top center no-repeat;
 	}
 }
 /*-----------------------------------*/
@@ -479,6 +486,11 @@ button:hover, a:hover {
 }
 
 #chartdiv3 {
+	width		: 100%;
+	height		: 500px;
+}
+
+#chartdiv4 {
 	width		: 100%;
 	height		: 500px;
 }
